@@ -1,0 +1,15 @@
+﻿<Window x:Class="Wealendar.Schedule"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Wealendar"
+        mc:Ignorable="d"
+        Title="Schedule" Height="400" Width="500">
+    <Grid>
+        <TextBox x:Name="sc" HorizontalAlignment="Left" Height="165" Margin="264,37,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="174"/>
+        <Button Content="저장" HorizontalAlignment="Left" Margin="59,0,0,30" VerticalAlignment="Bottom" Width="122" Height="42" Click="Save"/>
+        <Button Content="수정" HorizontalAlignment="Right" Margin="0,0,59,30" VerticalAlignment="Bottom" Width="122" Height="42" Click="Edit"/>
+        <ListBox x:Name="Con" HorizontalAlignment="Left" Margin="10,37,0,150" VerticalAlignment="Stretch" Width="204"/>
+    </Grid>
+</Window>

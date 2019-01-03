@@ -24,5 +24,11 @@ namespace Wealendar
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Schedule s = new Schedule();
+            s.Show();
+        }
     }
 }
