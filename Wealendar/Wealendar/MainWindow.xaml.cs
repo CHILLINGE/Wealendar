@@ -22,11 +22,19 @@ namespace Wealendar
     /// </summary>
     public partial class MainWindow : Window
     {
+        WeatherManager weather;
+
+
         public MainWindow()
         {
             InitializeComponent();
 
-            
+            weather = new WeatherManager();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            weather.LoadWeather();
         }
     }
 }

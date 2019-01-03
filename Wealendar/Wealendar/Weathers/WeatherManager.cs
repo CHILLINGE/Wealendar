@@ -27,8 +27,19 @@ namespace Wealendar
         {
             webclient = new WebManager();
             parser = new KMAAPI(); // 기상청 API 파서 활용
-            
 
+            Weather w = new Weather();
+            
+        }
+
+
+
+        public void LoadWeather()
+        {
+            WeatherManager mng;
+
+            
+                
         }
 
 

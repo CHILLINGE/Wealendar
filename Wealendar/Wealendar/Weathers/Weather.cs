@@ -21,6 +21,9 @@ namespace Wealendar
         /// </summary>
         public string City { get; set; }
 
+        /// <summary>
+        /// 날씨의 시간
+        /// </summary>
         public DateTime Time { get; set; }
 
         public CloudStatus Cloud { get; set; }

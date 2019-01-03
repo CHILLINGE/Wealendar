@@ -13,7 +13,7 @@ namespace Wealendar
     {
         public WeatherList() : base()
         {
-
+            
         }
     }
 }

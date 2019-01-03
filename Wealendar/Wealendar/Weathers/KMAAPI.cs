@@ -16,10 +16,16 @@ namespace Wealendar
 
         }
 
+        /// <summary>
+        /// 날씨 정보 파스
+        /// </summary>
+        /// <param name="data">xml 데이터</param>
+        /// <returns>날씨 리스트</returns>
         public WeatherList Parse(string data) // IApiParser 인터페이스의 메서드
         {
             WeatherList lst = new WeatherList();
 
+            
 
             return lst;
         }
