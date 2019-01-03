@@ -16,9 +16,9 @@ namespace Wealendar
 
         }
 
-        public List<Weather> Parse(string data) // IApiParser 인터페이스의 메서드
+        public WeatherList Parse(string data) // IApiParser 인터페이스의 메서드
         {
-            List<Weather> lst = new List<Weather>();
+            WeatherList lst = new WeatherList();
 
 
             return lst;

@@ -61,6 +61,7 @@
     <Compile Include="Weathers\IApiParser.cs" />
     <Compile Include="Weathers\KMAAPI.cs" />
     <Compile Include="Weathers\Weather.cs" />
+    <Compile Include="Weathers\WeatherList.cs" />
     <Compile Include="Weathers\WeatherManager.cs" />
     <Compile Include="WebManager.cs" />
     <Page Include="MainWindow.xaml">

@@ -7,10 +7,13 @@ using System.Threading.Tasks;
 namespace Wealendar
 {
     /// <summary>
-    /// API에서 받아온 데이터를 처리하는 클래스의 인터페이스
+    /// 날씨 정보 리스트 클래스
     /// </summary>
-    public interface IApiParser
+    public class WeatherList : List<Weather>
     {
-        WeatherList Parse(string data);
+        public WeatherList() : base()
+        {
+
+        }
     }
 }
