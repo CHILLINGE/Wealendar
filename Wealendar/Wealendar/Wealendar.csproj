@@ -57,6 +57,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\CalendarControl.xaml.cs">
+      <DependentUpon>CalendarControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Schedules\ScheduleManager.cs" />
     <Compile Include="Weathers\CloudStatus.cs" />
     <Compile Include="Weathers\IApiParser.cs" />
@@ -65,6 +68,10 @@
     <Compile Include="Weathers\WeatherList.cs" />
     <Compile Include="Weathers\WeatherManager.cs" />
     <Compile Include="WebManager.cs" />
+    <Page Include="Controls\CalendarControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

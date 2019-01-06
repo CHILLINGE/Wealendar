@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Wealendar"
         mc:Ignorable="d"
-        Title="Wealendar" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="Wealendar" Height="476.341" Width="674.878" Loaded="Window_Loaded">
     <Grid>
-        
+        <local:CalendarControl Margin="10,10,9.6,10" Click="CalendarControl_Click"/>
+
     </Grid>
 </Window>

@@ -36,5 +36,10 @@ namespace Wealendar
         {
             weather.LoadWeather();
         }
+
+        private void CalendarControl_Click(object sender, CalendarEventArgs e)
+        {
+            MessageBox.Show(e.TargetDate.Day.ToString() + "일 클릭함");
+        }
     }
 }
