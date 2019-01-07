@@ -5,9 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Wealendar"
         mc:Ignorable="d"
-        Title="Wealendar" Height="476.341" Width="674.878" Loaded="Window_Loaded">
+        Title="Wealendar" Height="464.357" Width="495.019" Loaded="Window_Loaded">
     <Grid>
-        <local:CalendarControl Margin="10,10,9.6,10" Click="CalendarControl_Click"/>
-
+        <local:CalendarControl x:Name="calendar" Margin="10,64,9.2,10.4" Click="CalendarControl_Click"/>
+        <TextBlock x:Name="txt_month" HorizontalAlignment="Left" Margin="22,22,0,0" Text="0월" VerticalAlignment="Top" FontSize="20"/>
+        <Button x:Name="btn_month_up" Content="up" HorizontalAlignment="Left" Margin="83,21,0,0" VerticalAlignment="Top" Width="46" Click="btn_month_up_Click"/>
+        <Button x:Name="btn_month_down" Content="down" HorizontalAlignment="Left" Margin="83,40,0,0" VerticalAlignment="Top" Width="46" Click="btn_month_down_Click"/>
     </Grid>
 </Window>

@@ -30,7 +30,9 @@ namespace Wealendar
         public int Year
         {
             get { return (int)GetValue(YearProperty); }
-            set { SetValue(YearProperty, value); }
+            set { SetValue(YearProperty, value);
+                ChangePage(Year, value);
+            }
         }
         public static readonly DependencyProperty YearProperty =
             DependencyProperty.Register("Year", typeof(int), typeof(CalendarControl), new PropertyMetadata(DateTime.Now.Year));
@@ -40,15 +42,16 @@ namespace Wealendar
         public int Month
         {
             get { return (int)GetValue(MonthProperty); }
-            set { SetValue(MonthProperty, value); }
+            set { SetValue(MonthProperty, value);
+                ChangePage(Year, value);
+            }
         }
-
-        // Using a DependencyProperty as the backing store for Month.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty MonthProperty =
             DependencyProperty.Register("Month", typeof(int), typeof(CalendarControl), new PropertyMetadata(DateTime.Now.Month));
 
         
 
+        
 
 
         public CalendarControl()
@@ -61,22 +64,18 @@ namespace Wealendar
             {
                 for (int j = 0; j < 7; j++)
                 {
-                    int day = i*7 + j + 1;
-                    if (day >= 30)
-                    {
-                        day = 1;
-                    }
-
-                    Button btn = new Button();
+                    
+                    
+                    CalendarControlItem btn = new CalendarControlItem();
 
                     Grid.SetRow(btn, i + 1);
                     Grid.SetColumn(btn, j);
 
-                    btn.Content = day.ToString();
+                    
 
                     btn.Click += (e, sender) => 
                     {
-                        Click?.Invoke(this, new CalendarEventArgs(new DateTime(Year, Month, day)));
+                        Click?.Invoke(this, new CalendarEventArgs(new DateTime(Year, Month, 1)));
                     };
 
                     maingrid.Children.Add(btn);
@@ -86,6 +85,37 @@ namespace Wealendar
                     
                 }
             }
+        }
+
+
+        private void ChangePage(int year, int month)
+        {
+            int days = DateTime.DaysInMonth(year, month);
+            int startday = (int)new DateTime(year, month, 1).DayOfWeek;
+
+            //for (int i = 0; i < days; i++)
+            //{
+            //    buttons[(startday + i) / 7, (startday + i) % 7].Content = i+1;
+            //}
+
+            int cnt = 1;
+            for (int i = startday; i < startday + days; i++)
+            {
+                buttons[i / 7, i % 7].Content = cnt++;
+            }
+
+            cnt = 1;
+            for (int i = startday + days; i < buttons.Length; i++)
+            {
+                buttons[i / 7, i % 7].Content = cnt++;
+            }
+
+            cnt = (int)new DateTime(year, month, 1).Subtract(new TimeSpan(startday,0,0,0)).Day;
+            for (int i = 0; i < startday; i++)
+            {
+                buttons[i / 7, i % 7].Content = cnt++;
+            }
+
         }
     }
 

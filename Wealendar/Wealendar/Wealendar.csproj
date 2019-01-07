@@ -60,6 +60,7 @@
     <Compile Include="Controls\CalendarControl.xaml.cs">
       <DependentUpon>CalendarControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\CalendarControlItem.cs" />
     <Compile Include="Schedules\ScheduleManager.cs" />
     <Compile Include="Weathers\CloudStatus.cs" />
     <Compile Include="Weathers\IApiParser.cs" />

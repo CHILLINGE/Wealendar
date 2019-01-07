@@ -24,6 +24,22 @@ namespace Wealendar
     {
         WeatherManager weather;
 
+        int _currentMonth;
+        public int CurrentMonth
+        {
+            get
+            {
+                return _currentMonth;
+            }
+            set
+            {
+                _currentMonth = value;
+                calendar.Month = _currentMonth;
+                txt_month.Text = _currentMonth.ToString() + "월";
+            }
+        }
+
+        
 
         public MainWindow()
         {
@@ -34,12 +50,26 @@ namespace Wealendar
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            CurrentMonth = DateTime.Now.Month;
+
             weather.LoadWeather();
         }
 
         private void CalendarControl_Click(object sender, CalendarEventArgs e)
         {
             MessageBox.Show(e.TargetDate.Day.ToString() + "일 클릭함");
+        }
+
+        private void btn_month_up_Click(object sender, RoutedEventArgs e)
+        {
+            if (CurrentMonth < 12)
+                CurrentMonth++;
+        }
+
+        private void btn_month_down_Click(object sender, RoutedEventArgs e)
+        {
+            if (CurrentMonth > 1)
+                CurrentMonth--;
         }
     }
 }
