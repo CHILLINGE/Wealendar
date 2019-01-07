@@ -57,7 +57,8 @@ namespace Wealendar
 
         private void CalendarControl_Click(object sender, CalendarEventArgs e)
         {
-            MessageBox.Show(e.TargetDate.Day.ToString() + "일 클릭함");
+            //MessageBox.Show(e.TargetDate.Day.ToString() + "일 클릭함");
+            MessageBox.Show(e.TargetDate.ToLongDateString());
         }
 
         private void btn_month_up_Click(object sender, RoutedEventArgs e)

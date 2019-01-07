@@ -20,7 +20,7 @@ namespace Wealendar
     /// </summary>
     public partial class CalendarControl : UserControl
     {
-        private Button[,] buttons;
+        private CalendarControlItem[,] buttons;
 
         public event EventHandler<CalendarEventArgs> Click;
 
@@ -30,35 +30,35 @@ namespace Wealendar
         public int Year
         {
             get { return (int)GetValue(YearProperty); }
-            set { SetValue(YearProperty, value);
-                ChangePage(Year, value);
-            }
+            set { SetValue(YearProperty, value); }
         }
         public static readonly DependencyProperty YearProperty =
-            DependencyProperty.Register("Year", typeof(int), typeof(CalendarControl), new PropertyMetadata(DateTime.Now.Year));
+            DependencyProperty.Register("Year", typeof(int), typeof(CalendarControl), new PropertyMetadata(DateTime.Now.Year, new PropertyChangedCallback(OnMonthChanged)));
 
 
 
         public int Month
         {
             get { return (int)GetValue(MonthProperty); }
-            set { SetValue(MonthProperty, value);
-                ChangePage(Year, value);
-            }
+            set { SetValue(MonthProperty, value); }
         }
         public static readonly DependencyProperty MonthProperty =
-            DependencyProperty.Register("Month", typeof(int), typeof(CalendarControl), new PropertyMetadata(DateTime.Now.Month));
+            DependencyProperty.Register("Month", typeof(int), typeof(CalendarControl), new PropertyMetadata(DateTime.Now.Month, new PropertyChangedCallback(OnMonthChanged) ));
 
-        
+        static void OnMonthChanged(DependencyObject dpobj, DependencyPropertyChangedEventArgs e)
+        {
+            CalendarControl ctl = dpobj as CalendarControl;
+            ctl.ChangePage(ctl.Year, ctl.Month);
+        }
 
-        
+
 
 
         public CalendarControl()
         {
             InitializeComponent();
 
-            buttons = new Button[6,7];
+            buttons = new CalendarControlItem[6,7];
 
             for (int i = 0; i < 6; i++)
             {
@@ -71,11 +71,12 @@ namespace Wealendar
                     Grid.SetRow(btn, i + 1);
                     Grid.SetColumn(btn, j);
 
-                    
 
-                    btn.Click += (e, sender) => 
+
+                    btn.Click += (sender, e) =>
                     {
-                        Click?.Invoke(this, new CalendarEventArgs(new DateTime(Year, Month, 1)));
+                        CalendarControlItem ctl = sender as CalendarControlItem;
+                        Click?.Invoke(this, new CalendarEventArgs(ctl.TargetDate));
                     };
 
                     maingrid.Children.Add(btn);
@@ -85,6 +86,12 @@ namespace Wealendar
                     
                 }
             }
+            
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            ChangePage(Year, Month);
         }
 
 
@@ -93,30 +100,28 @@ namespace Wealendar
             int days = DateTime.DaysInMonth(year, month);
             int startday = (int)new DateTime(year, month, 1).DayOfWeek;
 
-            //for (int i = 0; i < days; i++)
-            //{
-            //    buttons[(startday + i) / 7, (startday + i) % 7].Content = i+1;
-            //}
-
             int cnt = 1;
             for (int i = startday; i < startday + days; i++)
             {
-                buttons[i / 7, i % 7].Content = cnt++;
+                
+                buttons[i / 7, i % 7].TargetDate = new DateTime(year, month, cnt++);
             }
 
-            cnt = 1;
+            cnt = 0;
             for (int i = startday + days; i < buttons.Length; i++)
             {
-                buttons[i / 7, i % 7].Content = cnt++;
+                buttons[i / 7, i % 7].TargetDate = new DateTime(year,month, 1).AddMonths(1).AddDays(cnt++);
             }
 
-            cnt = (int)new DateTime(year, month, 1).Subtract(new TimeSpan(startday,0,0,0)).Day;
+            cnt = (int)new DateTime(year, month, 1).Subtract(new TimeSpan(startday, 0, 0, 0)).Day - 1;
             for (int i = 0; i < startday; i++)
             {
-                buttons[i / 7, i % 7].Content = cnt++;
+                buttons[i / 7, i % 7].TargetDate = new DateTime(year, month, 1).AddMonths(-1).AddDays(cnt++);
             }
 
         }
+
+        
     }
 
     public class CalendarEventArgs : EventArgs
