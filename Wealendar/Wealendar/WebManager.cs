@@ -56,6 +56,12 @@ namespace Wealendar
 
         }
 
+        /// <summary>
+        /// POST 메서드로 내용을 가져온다. 매개변수를 설정할 수 있다.
+        /// </summary>
+        /// <param name="url">가져올 사이트의 주소</param>
+        /// <param name="data">매개변수들</param>
+        /// <returns>가져온 내용</returns>
         public string PostContent(string url, Dictionary<string, string> data)
         {
             WebClient client = new WebClient();
