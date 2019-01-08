@@ -36,8 +36,6 @@ namespace Wealendar
 
         public void LoadWeather()
         {
-            WeatherManager mng;
-
             
                 
         }
