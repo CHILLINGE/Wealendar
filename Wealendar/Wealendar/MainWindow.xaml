@@ -5,11 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Wealendar"
         mc:Ignorable="d"
-        Title="Wealendar" Height="464.357" Width="495.019" Loaded="Window_Loaded">
+        Title="Wealendar" Height="464.357" Width="736.619" Loaded="Window_Loaded">
     <Grid>
-        <local:CalendarControl x:Name="calendar" Margin="10,64,9.2,10.4" Click="CalendarControl_Click"/>
-        <TextBlock x:Name="txt_month" HorizontalAlignment="Left" Margin="22,22,0,0" Text="0월" VerticalAlignment="Top" FontSize="20"/>
-        <Button x:Name="btn_month_up" Content="up" HorizontalAlignment="Left" Margin="83,21,0,0" VerticalAlignment="Top" Width="46" Click="btn_month_up_Click"/>
-        <Button x:Name="btn_month_down" Content="down" HorizontalAlignment="Left" Margin="83,40,0,0" VerticalAlignment="Top" Width="46" Click="btn_month_down_Click"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="246.4"/>
+        </Grid.ColumnDefinitions>
+        <local:CalendarControl x:Name="calendar" Margin="10,64,18.2,10.4" Click="CalendarControl_Click"/>
+        <TextBlock x:Name="txt_year" HorizontalAlignment="Left" Margin="22,22,0,0" Text="2000년" VerticalAlignment="Top" FontSize="20" Height="27"/>
+        <TextBlock x:Name="txt_month" HorizontalAlignment="Left" Margin="100,22,0,0" Text="0월" VerticalAlignment="Top" FontSize="20" Height="27"/>
+        <Button x:Name="btn_month_up" Content="up" HorizontalAlignment="Left" Margin="158,13,0,0" VerticalAlignment="Top" Width="46" Click="btn_month_up_Click"/>
+        <Button x:Name="btn_month_down" Content="down" HorizontalAlignment="Left" Margin="158,32,0,0" VerticalAlignment="Top" Width="46" Click="btn_month_down_Click" Height="19"/>
+        <TextBlock x:Name="txt_datenow" Text="현재시간" FontSize="16" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="8.8,28,0,0" Grid.Column="1"/>
     </Grid>
 </Window>
