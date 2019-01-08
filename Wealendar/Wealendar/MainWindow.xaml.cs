@@ -39,6 +39,37 @@ namespace Wealendar
             }
         }
 
+        int _currentYear;
+        public int CurrentYear
+        {
+            get
+            {
+                return _currentYear;
+            }
+            set
+            {
+                _currentYear = value;
+                calendar.Year = _currentYear;
+                txt_year.Text = _currentYear.ToString() + "월";
+            }
+        }
+
+
+        DateTime _currentDate;
+        public DateTime CurrentDate
+        {
+            get
+            {
+                return _currentDate;
+            }
+            set
+            {
+                _currentDate = value;
+                txt_datenow.Text = value.ToLongDateString();
+            }
+        }
+
+
         
 
         public MainWindow()
@@ -51,26 +82,44 @@ namespace Wealendar
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             CurrentMonth = DateTime.Now.Month;
+            CurrentYear = DateTime.Now.Year;
+            CurrentDate = DateTime.Now;
 
             weather.LoadWeather();
         }
 
         private void CalendarControl_Click(object sender, CalendarEventArgs e)
         {
-            //MessageBox.Show(e.TargetDate.Day.ToString() + "일 클릭함");
-            MessageBox.Show(e.TargetDate.ToLongDateString());
+            CurrentDate = e.TargetDate;
+            
         }
 
         private void btn_month_up_Click(object sender, RoutedEventArgs e)
         {
             if (CurrentMonth < 12)
+            {
                 CurrentMonth++;
+            }
+            else
+            {
+                CurrentYear++;
+                CurrentMonth = 1;
+            }
+                
         }
 
         private void btn_month_down_Click(object sender, RoutedEventArgs e)
         {
             if (CurrentMonth > 1)
+            {
                 CurrentMonth--;
+            } 
+            else
+            {
+                CurrentYear--;
+                CurrentMonth = 12;
+            }
+                
         }
     }
 }
