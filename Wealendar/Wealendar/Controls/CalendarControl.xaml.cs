@@ -22,7 +22,7 @@ namespace Wealendar
     {
         private CalendarControlItem[,] buttons;
 
-        public event EventHandler<CalendarEventArgs> Click;
+        public event EventHandler<CalendarEventArgs> SelectionChanged;
 
 
 
@@ -54,6 +54,23 @@ namespace Wealendar
 
 
 
+        public DateTime SelectedDate
+        {
+            get { return (DateTime)GetValue(SelectedDateProperty); }
+            set { SetValue(SelectedDateProperty, value); }
+        }
+        public static readonly DependencyProperty SelectedDateProperty =
+            DependencyProperty.Register("SelectedDate", typeof(DateTime), typeof(CalendarControl), new PropertyMetadata(DateTime.Now, new PropertyChangedCallback(OnDateChanged)));
+
+        static void OnDateChanged(DependencyObject dpobj, DependencyPropertyChangedEventArgs e)
+        {
+            CalendarControl ctl = dpobj as CalendarControl;
+            
+        }
+
+
+
+
         public CalendarControl()
         {
             InitializeComponent();
@@ -76,7 +93,9 @@ namespace Wealendar
                     btn.Click += (sender, e) =>
                     {
                         CalendarControlItem ctl = sender as CalendarControlItem;
-                        Click?.Invoke(this, new CalendarEventArgs(ctl.TargetDate));
+
+                        SelectedDate = ctl.TargetDate;
+                        SelectionChanged?.Invoke(this, new CalendarEventArgs(ctl.TargetDate));
                     };
 
                     maingrid.Children.Add(btn);
@@ -86,6 +105,9 @@ namespace Wealendar
                     
                 }
             }
+
+
+            SelectedDate = DateTime.Now;
             
         }
 
