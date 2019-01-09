@@ -11,6 +11,7 @@ namespace Wealendar
 {
     public class ScheduleManager
     {
+        /*
         /// <summary>
         /// 저장된 일정 불러오기
         /// </summary>
@@ -55,5 +56,6 @@ namespace Wealendar
             xroot.Add(xe1);
             xdoc.Save(url);
         }
+        */
     }
 }
