@@ -25,40 +25,53 @@ namespace Wealendar
         public Schedule()
         {
             InitializeComponent();
-            string url = @".\190103.xml";
+            string url = @".\일정모음.xml";
             
             try
             {
                 XmlDocument xml = new XmlDocument();
                 xml.Load(url);
-                XmlNodeList conList = xml.SelectNodes("Employees/Employee");
+                XmlNodeList conList = xml.SelectNodes("Schedule/Day");
                 foreach(XmlNode xn in conList)
                 {
-                    string part = xn["Content"].InnerText;
-                    sc.AppendText(part + "\n");
+                    string part1 = xn["date"].InnerText;
+                    if (part1 == "190103")
+                    {
+                        string part2 = xn["Content"].InnerText;
+                        sc.AppendText(part2 + "\n");
+                    }
                 }
             }
             catch(ArgumentException ex)
             {
                 MessageBox.Show("XML 문제 발생\n" + ex);
             }
-            
+           
         }
 
         private void Save(object sender, RoutedEventArgs e)
         {
-            string url = @".\190103.xml";
+            string url = @".\일정모음.xml";
             string text = sc.Text;
       
             XDocument xdoc = new XDocument(new XDeclaration("1.0", "UTF-8", null));
-            XElement xroot = new XElement("Employees");
+            XElement xroot = new XElement("Schedule");
             xdoc.Add(xroot);
 
-            XElement xe1 = new XElement("Employee",
-                new XAttribute("ID", "1001"),
+            XElement xe1 = new XElement("Day",
+                //new XAttribute("ID", "190103"),
+                new XElement("date", "190101"),
                 new XElement("Content", text)
                 );
+           
+            XElement xe2 = new XElement("Day",
+                //new XAttribute("ID", "190103"),
+                new XElement("date","190106"),
+                new XElement("Content", "hey")
+                );
+
             xroot.Add(xe1);
+            xroot.Add(xe2);
             xdoc.Save(url);
         }
 
