@@ -11,7 +11,7 @@ namespace Wealendar
 {
     public class ScheduleManager : IScheduleManager
     {
-        public Dictionary<string, string> Data { get; set; }
+        private Dictionary<string, string> Data { get; set; }
 
 
         /// <summary>
@@ -19,14 +19,50 @@ namespace Wealendar
         /// </summary>
         public void Load()
         {
-            
+            string url = @".\일정모음.xml";
+
+            try
+            {
+                XmlDocument xml = new XmlDocument();
+                xml.Load(url);
+                XmlNodeList sList = xml.SelectNodes("Schedule/Day");
+
+                foreach (XmlNode xn in sList)
+                {
+                    string d = xn["date"].InnerText;
+                    string c = xn["Content"].InnerText;
+                    Data[d] = c;
+                }
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show("XML 문제 발생\n" + ex);
+            }
+
+
         }
 
         /// <summary>
-        ///  전체 데이터를 파일에서 저장
+        ///  전체 데이터를 파일에 저장
         /// </summary>
         public void Save()
         {
+            string url = @".\일정모음.xml";
+
+            XDocument xdoc = new XDocument(new XDeclaration("1.0", "UTF-8", null));
+            XElement xroot = new XElement("Schedule");
+            xdoc.Add(xroot);
+
+            List<string> list = new List<string>(Data.Keys);
+
+            foreach (string k in list) {
+                XElement xe1 = new XElement("Day",
+                    new XElement("date", k),
+                    new XElement("Content", Data[k])
+                    );
+                xroot.Add(xe1);
+                xdoc.Save(url);
+            }
 
         }
 
@@ -37,10 +73,12 @@ namespace Wealendar
         /// <returns>"그날의 일정"</returns>
         public string GetData(DateTime target)
         {
+            string Mydateschedule = target.ToString("yy-MM-dd");
 
-
-
-            return "그 날의 일정데이터";
+            if (Data.ContainsKey(Mydateschedule)) //일정이 있는지 구분
+                return Data[Mydateschedule]; //그 날의 일정데이터
+            else
+                return "일정없음";
         }
 
 
@@ -49,57 +87,11 @@ namespace Wealendar
         /// </summary>
         /// <param name="target">원하는 날짜</param>
         /// <param name="data">넣을 데이터</param>
-        void SetData(DateTime target, string data)
+        public void SetData(DateTime target, string data)
         {
+            string Mydateschedule = target.ToString("yy-MM-dd");
 
+            Data[Mydateschedule] = data;
         }
-
-
-        /*
-        /// <summary>
-        /// 저장된 일정 불러오기
-        /// </summary>
-        /// <returns></returns>
-        public List<string> LoadSchedule(string year, string month, string day)
-        {
-            string filename = year + month + day;
-            string url = @".\" + filename + ".xml";
-
-            try
-            {
-                XmlDocument xml = new XmlDocument();
-                xml.Load(url);
-                XmlNodeList conList = xml.SelectNodes("Schedule/Day");
-                List<string> reList;
-                foreach (XmlNode xn in conList)
-                {
-                    string part = xn["Content"].InnerText;
-                    reList.Add(part);
-                }
-            }
-            catch (ArgumentException ex)
-            {
-                MessageBox.Show("XML 문제 발생\n" + ex);
-            }
-            return reList;
-            
-        }
-        public void SaveSchedule(string year, string month, string day, List<string> content)
-        {
-            string filename = year + month + day;
-            string url = @".\" + filename + ".xml";
-
-            XDocument xdoc = new XDocument(new XDeclaration("1.0", "UTF-8", null));
-            XElement xroot = new XElement("Schedule");
-            xdoc.Add(xroot);
-
-            XElement xe1 = new XElement("Day",
-                new XAttribute("date", ""), 
-                new XElement("Content", content)
-                );
-            xroot.Add(xe1);
-            xdoc.Save(url);
-        }
-        */
     }
 }

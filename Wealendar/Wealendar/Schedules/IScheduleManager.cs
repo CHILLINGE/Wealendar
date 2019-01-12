@@ -8,11 +8,6 @@ namespace Wealendar
 {
     public interface IScheduleManager
     {
-        // 데이터들을 저장하는 프로퍼티
-        /// <summary>
-        /// 데이터들을 저장하는 프로퍼티
-        /// </summary>
-        Dictionary<string,string> Data { get; set; }
 
         
         /// <summary>
@@ -22,7 +17,7 @@ namespace Wealendar
 
         
         /// <summary>
-        /// 전체 데이터를 파일에서 저장
+        /// 전체 데이터를 파일에 저장
         /// </summary>
         void Save();
 
