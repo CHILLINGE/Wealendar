@@ -12,7 +12,7 @@ namespace Wealendar
         /// <summary>
         /// 데이터들을 저장하는 프로퍼티
         /// </summary>
-        Dictionary<DateTime,string> Data { get; set; }
+        Dictionary<string,string> Data { get; set; }
 
         
         /// <summary>

@@ -9,8 +9,52 @@ using System.Xml.Linq;
 
 namespace Wealendar
 {
-    public class ScheduleManager
+    public class ScheduleManager : IScheduleManager
     {
+        public Dictionary<string, string> Data { get; set; }
+
+
+        /// <summary>
+        /// 스케쥴 정보 디스크에서 로딩
+        /// </summary>
+        public void Load()
+        {
+            
+        }
+
+        /// <summary>
+        ///  전체 데이터를 파일에서 저장
+        /// </summary>
+        public void Save()
+        {
+
+        }
+
+        /// <summary>
+        /// "메모리에 로딩된" 데이터를 쏴주기
+        /// </summary>
+        /// <param name="target"></param>
+        /// <returns>"그날의 일정"</returns>
+        public string GetData(DateTime target)
+        {
+
+
+
+            return "그 날의 일정데이터";
+        }
+
+
+        /// <summary>
+        /// 원하는 날짜에 데이터 넣기
+        /// </summary>
+        /// <param name="target">원하는 날짜</param>
+        /// <param name="data">넣을 데이터</param>
+        void SetData(DateTime target, string data)
+        {
+
+        }
+
+
         /*
         /// <summary>
         /// 저장된 일정 불러오기
@@ -50,7 +94,7 @@ namespace Wealendar
             xdoc.Add(xroot);
 
             XElement xe1 = new XElement("Day",
-                new XAttribute("date", ""), //날짜로 ID구분해서 저장
+                new XAttribute("date", ""), 
                 new XElement("Content", content)
                 );
             xroot.Add(xe1);
