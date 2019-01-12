@@ -13,13 +13,22 @@ namespace Wealendar
     {
         private Dictionary<string, string> Data { get; set; }
 
+        /// <summary>
+        /// 쓰고 읽을 파일의 경로를 지정하는 변수
+        /// </summary>
+        private string filepath;
+
+        public ScheduleManager(string path)
+        {
+            filepath = path;
+        }
 
         /// <summary>
         /// 스케쥴 정보 디스크에서 로딩
         /// </summary>
         public void Load()
         {
-            string url = @".\일정모음.xml";
+            string url = filepath;
 
             try
             {
@@ -47,7 +56,7 @@ namespace Wealendar
         /// </summary>
         public void Save()
         {
-            string url = @".\일정모음.xml";
+            string url = filepath;
 
             XDocument xdoc = new XDocument(new XDeclaration("1.0", "UTF-8", null));
             XElement xroot = new XElement("Schedule");
@@ -78,7 +87,7 @@ namespace Wealendar
             if (Data.ContainsKey(Mydateschedule)) //일정이 있는지 구분
                 return Data[Mydateschedule]; //그 날의 일정데이터
             else
-                return "일정없음";
+                return null; // 없으면 null 반환
         }
 
 
@@ -92,6 +101,18 @@ namespace Wealendar
             string Mydateschedule = target.ToString("yy-MM-dd");
 
             Data[Mydateschedule] = data;
+        }
+
+        /// <summary>
+        /// 일정이 있는지 없는지 확인
+        /// </summary>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        public bool DataExists(DateTime target)
+        {
+            string Mydateschedule = target.ToString("yy-MM-dd");
+
+            return Data.ContainsKey(Mydateschedule);
         }
     }
 }
