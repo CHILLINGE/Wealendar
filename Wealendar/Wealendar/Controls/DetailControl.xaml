@@ -14,7 +14,7 @@
         <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
             <Grid>
                 <TextBlock x:Name="txt_show" Margin="2" Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=local:DetailControl}, Path=InnerText}"/>
-                <TextBox x:Name="txt_edit" Visibility="Hidden"/>
+                <TextBox x:Name="txt_edit" AcceptsReturn="True" Visibility="Hidden"/>
             </Grid>
             
         </ScrollViewer>
