@@ -118,5 +118,11 @@ namespace Wealendar
             }
                 
         }
+
+        // 수정 후 저장 클릭
+        private void DetailControl_Modified(object sender, EventArgs e)
+        {
+
+        }
     }
 }
