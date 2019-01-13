@@ -61,25 +61,26 @@ namespace Wealendar
             DetailControl ctl = dpobj as DetailControl;
 
 
+            if (e.OldValue != e.NewValue)
+                if (e.NewValue.Equals(true))
+                {
+                    ctl.txt_edit.Text = ctl.InnerText;
 
-            if (e.NewValue.Equals(true))
-            {
-                ctl.txt_edit.Text = ctl.InnerText;
-
-                ctl.txt_show.Visibility = Visibility.Hidden;
-                ctl.txt_edit.Visibility = Visibility.Visible;
-                ctl.btn_cancel.Visibility = Visibility.Visible;
-                ctl.btn_save.Visibility = Visibility.Visible;
-                ctl.btn_edit.Visibility = Visibility.Hidden;
-            }
-            else
-            {
-                ctl.txt_show.Visibility = Visibility.Visible;
-                ctl.txt_edit.Visibility = Visibility.Hidden;
-                ctl.btn_cancel.Visibility = Visibility.Hidden;
-                ctl.btn_save.Visibility = Visibility.Hidden;
-                ctl.btn_edit.Visibility = Visibility.Visible;
-            }
+                    ctl.txt_show.Visibility = Visibility.Hidden;
+                    ctl.txt_edit.Visibility = Visibility.Visible;
+                    ctl.btn_cancel.Visibility = Visibility.Visible;
+                    ctl.btn_save.Visibility = Visibility.Visible;
+                    ctl.btn_edit.Visibility = Visibility.Hidden;
+                }
+                else
+                {
+                    ctl.txt_edit.Text = ""; 
+                    ctl.txt_show.Visibility = Visibility.Visible;
+                    ctl.txt_edit.Visibility = Visibility.Hidden;
+                    ctl.btn_cancel.Visibility = Visibility.Hidden;
+                    ctl.btn_save.Visibility = Visibility.Hidden;
+                    ctl.btn_edit.Visibility = Visibility.Visible;
+                }
             
         }
 

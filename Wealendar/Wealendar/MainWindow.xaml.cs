@@ -86,7 +86,8 @@ namespace Wealendar
         // 달력의 날짜를 누를 때 이벤트
         private void CalendarControl_SelectionChanged(object sender, CalendarEventArgs e)
         {
-            txt_datenow.Text = e.TargetDate.ToLongDateString();
+            txt_datenow.Text = e.TargetDate.ToLongDateString(); // 현재 날짜 텍스트 변경
+            detail.IsEditMode = false; // 수정중이었으면 취소
 
         }
 
@@ -119,7 +120,7 @@ namespace Wealendar
                 
         }
 
-        // 수정 후 저장 클릭
+        // 수정 후 저장버튼 클릭
         private void DetailControl_Modified(object sender, EventArgs e)
         {
 

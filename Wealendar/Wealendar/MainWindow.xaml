@@ -28,7 +28,7 @@
         </Button>
         <TextBlock x:Name="txt_datenow" Text="2000년 1월 1일" FontSize="16" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="8.8,28,0,0" Grid.Column="1"/>
         <TextBlock x:Name="txt_weather" Text="-3&#176; / -5&#176; 맑음" FontSize="14" Grid.Column="1"  VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,55,0,0"/>
-        <local:DetailControl InnerText="hello" Grid.Column="1" Margin="10,91,10.4,10.4" Modified="DetailControl_Modified"/>
+        <local:DetailControl x:Name="detail" InnerText="hello" Grid.Column="1" Margin="10,91,10.4,10.4" Modified="DetailControl_Modified"/>
 
     </Grid>
 </Window>
