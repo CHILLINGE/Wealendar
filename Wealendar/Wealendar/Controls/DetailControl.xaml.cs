@@ -23,7 +23,7 @@ namespace Wealendar
         /// <summary>
         /// 수정 될 때의 이벤트
         /// </summary>
-        public event EventHandler Modified;
+        public event EventHandler<DetailModifiedEventArgs> Modified;
         
         /// <summary>
         /// 현재 표시하는 내용
@@ -62,6 +62,7 @@ namespace Wealendar
 
 
             if (e.OldValue != e.NewValue)
+            {
                 if (e.NewValue.Equals(true))
                 {
                     ctl.txt_edit.Text = ctl.InnerText;
@@ -81,7 +82,7 @@ namespace Wealendar
                     ctl.btn_save.Visibility = Visibility.Hidden;
                     ctl.btn_edit.Visibility = Visibility.Visible;
                 }
-            
+            }
         }
 
 
@@ -108,9 +109,29 @@ namespace Wealendar
         // 저장을 누르면
         private void btn_save_Click(object sender, RoutedEventArgs e)
         {
-            IsEditMode = false; // 편집모드를 해제하고
+            
+
+            string oldv = InnerText; // 기존값과 변경된 값 킵
+            string newv = txt_edit.Text;
+
             InnerText = txt_edit.Text; // 수정된 사항을 반영하고
-            Modified?.Invoke(this, new EventArgs()); // Modified 이벤트 호출
+            Modified?.Invoke(this, new DetailModifiedEventArgs(oldv, newv)); // Modified 이벤트 호출
+
+            IsEditMode = false; // 편집모드를 해제
         }
+    }
+
+    public class DetailModifiedEventArgs : EventArgs
+    {
+        public string OldValue { get; set; }
+        public string NewValue { get; set; }
+
+        public DetailModifiedEventArgs(string oldval, string newval)
+        {
+            OldValue = oldval;
+            NewValue = newval;
+        }
+
+
     }
 }

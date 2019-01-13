@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using System.ServiceModel.Syndication;
+using System.IO;
 
 namespace Wealendar
 {
@@ -23,6 +24,7 @@ namespace Wealendar
     public partial class MainWindow : Window
     {
         WeatherManager weather;
+        ScheduleManager schedule;
 
 
 
@@ -71,25 +73,43 @@ namespace Wealendar
             InitializeComponent();
 
             weather = new WeatherManager();
-        }
+            schedule = new ScheduleManager("schedule.xml"); // 스케쥴 매니저 초기화
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
             // 프로퍼티 초기값 설정
             CurrentMonth = DateTime.Now.Month;
             CurrentYear = DateTime.Now.Year;
+        }
+
+        // MainWindow 로드 완료 시
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+            schedule.Load(); // 스케쥴 정보 로드
+            
             
 
             weather.LoadWeather();
+
+
+
+            calendar.SelectedDate = DateTime.Now;
+            UpdateDetails();
         }
 
         // 달력의 날짜를 누를 때 이벤트
         private void CalendarControl_SelectionChanged(object sender, CalendarEventArgs e)
         {
-            txt_datenow.Text = e.TargetDate.ToLongDateString(); // 현재 날짜 텍스트 변경
-            detail.IsEditMode = false; // 수정중이었으면 취소
+            UpdateDetails();
 
         }
+
+        void UpdateDetails()
+        {
+            txt_datenow.Text = calendar.SelectedDate.ToLongDateString(); // 현재 날짜 텍스트 변경
+            detail.IsEditMode = false; // 수정중이었으면 취소
+            detail.InnerText = schedule.GetData(calendar.SelectedDate); // 불러온 날짜의 데이터 표시하기
+        }
+
 
         // 월 변경 버튼 클릭
         private void btn_month_up_Click(object sender, RoutedEventArgs e)
@@ -121,9 +141,11 @@ namespace Wealendar
         }
 
         // 수정 후 저장버튼 클릭
-        private void DetailControl_Modified(object sender, EventArgs e)
+        private void DetailControl_Modified(object sender, DetailModifiedEventArgs e)
         {
-
+            schedule.SetData(calendar.SelectedDate, e.NewValue);
+            
+            schedule.Save(); // 고칠때마다 저장
         }
     }
 }

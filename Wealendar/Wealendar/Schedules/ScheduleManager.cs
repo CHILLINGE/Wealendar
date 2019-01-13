@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,25 +29,33 @@ namespace Wealendar
         /// </summary>
         public void Load()
         {
+            Data = new Dictionary<string, string>();
+
             string url = filepath;
 
-            try
+            if (File.Exists(url)) // 파일이 존재하면
             {
-                XmlDocument xml = new XmlDocument();
-                xml.Load(url);
-                XmlNodeList sList = xml.SelectNodes("Schedule/Day");
-
-                foreach (XmlNode xn in sList)
+                try
                 {
-                    string d = xn["date"].InnerText;
-                    string c = xn["Content"].InnerText;
-                    Data[d] = c;
+                    XmlDocument xml = new XmlDocument();
+                    xml.Load(url);
+                    XmlNodeList sList = xml.SelectNodes("Schedule/Day");
+
+                    foreach (XmlNode xn in sList)
+                    {
+                        string d = xn["date"].InnerText;
+                        string c = xn["Content"].InnerText;
+                        Data[d] = c;
+                    }
+                }
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show("XML 문제 발생\n" + ex);
                 }
             }
-            catch (ArgumentException ex)
-            {
-                MessageBox.Show("XML 문제 발생\n" + ex);
-            }
+            
+
+            
 
 
         }
