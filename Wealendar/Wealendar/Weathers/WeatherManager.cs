@@ -23,7 +23,6 @@ namespace Wealendar
         {
             webclient = new WebManager();
             
-            
         }
 
 
