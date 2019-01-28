@@ -114,6 +114,21 @@ namespace Wealendar
         // 월 변경 버튼 클릭
         private void btn_month_up_Click(object sender, RoutedEventArgs e)
         {
+            if (CurrentMonth > 1)
+            {
+                CurrentMonth--;
+            }
+            else
+            {
+                CurrentYear--;
+                CurrentMonth = 12;
+            }
+
+                
+        }
+        // 월 변경 버튼 클릭
+        private void btn_month_down_Click(object sender, RoutedEventArgs e)
+        {
             if (CurrentMonth < 12)
             {
                 CurrentMonth++;
@@ -123,21 +138,6 @@ namespace Wealendar
                 CurrentYear++;
                 CurrentMonth = 1;
             }
-                
-        }
-        // 월 변경 버튼 클릭
-        private void btn_month_down_Click(object sender, RoutedEventArgs e)
-        {
-            if (CurrentMonth > 1)
-            {
-                CurrentMonth--;
-            } 
-            else
-            {
-                CurrentYear--;
-                CurrentMonth = 12;
-            }
-                
         }
 
         // 수정 후 저장버튼 클릭
