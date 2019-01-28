@@ -26,19 +26,10 @@ namespace Wealendar
         /// <returns>날씨 리스트</returns>
         public WeatherList Parse(string data) // IApiParser 인터페이스의 메서드
         {
-            WeatherList lst = new WeatherList();
-            string url = "http://www.kma.go.kr/weather/forecast/mid-term-xml.jsp";
-
-            UriBuilder ub = new UriBuilder(url);
-            ub.Query = "srnLd=109";
-
-            HttpWebRequest request;
-            request = HttpWebRequest.Create(ub.Uri) as HttpWebRequest;
-            request.BeginGetResponse(new AsyncCallback(GetResponse), request);
-            return lst;
+            
         }
 
-        private void GetResponse(IAsyncResult ar)
+        private void GetResponse()
         {
 
         }

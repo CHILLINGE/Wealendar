@@ -11,10 +11,7 @@ namespace Wealendar
     /// </summary>
     public class WeatherManager
     {
-        /// <summary>
-        /// API를 해석하는데 사용할 파서
-        /// </summary>
-        private readonly IApiParser parser;
+        
 
         /// <summary>
         /// 웹에 접근하는 클래스
@@ -26,15 +23,22 @@ namespace Wealendar
         public WeatherManager()
         {
             webclient = new WebManager();
-            parser = new KMAAPI(); // 기상청 API 파서 활용
-
             Weather w = new Weather();
-            
+
+            Dictionary<string, string> data = new Dictionary<string, string>();
+            data["ServiceKey"] = "yW0fFl3x75%2Fc%2FC1jrkPKbqvt49hJS%2FHnk97M2euq1U3cpz%2FB6PyGwLPndqhOVFspMOXaI%2Fnsv0fQZCTQL2xyXw%3D%3D";
+            data["base_date"] = 20190128.ToString();
+            data["base_time"] = 0500.ToString();
+            data["nx"] = 59.ToString();
+            data["ny"] = 126.ToString();
+
+
+            webclient.GetContent("http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2", data);
         }
 
 
 
-        public void LoadWeather()
+        public void LoadWeather(string location,DateTime target)
         {
             
                 
