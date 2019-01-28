@@ -70,8 +70,6 @@
     <Compile Include="Schedules\IScheduleManager.cs" />
     <Compile Include="Schedules\ScheduleManager.cs" />
     <Compile Include="Weathers\CloudStatus.cs" />
-    <Compile Include="Weathers\IApiParser.cs" />
-    <Compile Include="Weathers\KMAAPI.cs" />
     <Compile Include="Weathers\Weather.cs" />
     <Compile Include="Weathers\WeatherList.cs" />
     <Compile Include="Weathers\WeatherManager.cs" />
