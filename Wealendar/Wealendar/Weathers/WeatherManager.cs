@@ -40,7 +40,7 @@ namespace Wealendar
             data["nx"] = nx.ToString();
             data["ny"] = ny.ToString();
 
-            path = webclient.GetContent("http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2", data);
+            path = webclient.GetContent("http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/getForecastTimeData", data);
             
 
         }
