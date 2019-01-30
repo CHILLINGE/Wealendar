@@ -6,29 +6,30 @@
         xmlns:local="clr-namespace:Wealendar"
         mc:Ignorable="d"
         Title="Wealendar" Height="464.357" Width="736.619" Loaded="Window_Loaded">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="246.4"/>
-        </Grid.ColumnDefinitions>
-        <local:CalendarControl x:Name="calendar" Margin="10,64,18.2,10.4" SelectionChanged="CalendarControl_SelectionChanged"/>
-        <TextBlock x:Name="txt_year" HorizontalAlignment="Left" Margin="22,22,0,0" Text="2000년" VerticalAlignment="Top" FontSize="20" Height="27"/>
-        <TextBlock x:Name="txt_month" HorizontalAlignment="Left" Margin="100,22,0,0" Text="0월" VerticalAlignment="Top" FontSize="20" Height="27"/>
-        <Button x:Name="btn_month_up" HorizontalAlignment="Left" Margin="150,18,0,0" VerticalAlignment="Top"  Click="btn_month_up_Click" Height="16" Width="33">
-            <Viewbox>
-                <Path Data="M16.022003,0L21.291992,4.2460014 32,12.876004 32,21.368007 19.847992,11.574002 16.069,8.5310041 15.977997,8.6029951 12.153992,11.687009 0,21.478999 0,12.986997 10.709991,4.358001 10.799011,4.2839958 10.752991,4.2460014z" 
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition/>
+			<ColumnDefinition Width="246.4"/>
+		</Grid.ColumnDefinitions>
+		<local:CalendarControl x:Name="calendar" Margin="10,64,18.2,10.4" SelectionChanged="CalendarControl_SelectionChanged"/>
+		<TextBlock x:Name="txt_year" HorizontalAlignment="Left" Margin="22,22,0,0" Text="2000년" VerticalAlignment="Top" FontSize="20" Height="27"/>
+		<TextBlock x:Name="txt_month" HorizontalAlignment="Left" Margin="100,22,0,0" Text="0월" VerticalAlignment="Top" FontSize="20" Height="27"/>
+		<Button x:Name="btn_month_up" HorizontalAlignment="Left" Margin="150,18,0,0" VerticalAlignment="Top"  Click="btn_month_up_Click" Height="16" Width="33">
+			<Viewbox>
+				<Path Data="M16.022003,0L21.291992,4.2460014 32,12.876004 32,21.368007 19.847992,11.574002 16.069,8.5310041 15.977997,8.6029951 12.153992,11.687009 0,21.478999 0,12.986997 10.709991,4.358001 10.799011,4.2839958 10.752991,4.2460014z" 
                       Stretch="Uniform" Fill="Black" Width="15" Height="15" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5"></Path>
-            </Viewbox>
-        </Button>
-        <Button x:Name="btn_month_down" HorizontalAlignment="Left" Margin="150,39,0,0" VerticalAlignment="Top" Width="33" Click="btn_month_down_Click" Height="16">
-            <Viewbox>
-                <Path Data="M32,0L32,8.4920026 21.291016,17.120999 21.200989,17.195005 21.247009,17.232999 15.978027,21.478999 10.708008,17.232999 0,8.6020032 0,0.11100769 12.151001,9.904997 15.93103,12.947995 16.020996,12.874997 19.846008,9.7920056z" 
+			</Viewbox>
+		</Button>
+		<Button x:Name="btn_month_down" HorizontalAlignment="Left" Margin="150,39,0,0" VerticalAlignment="Top" Width="33" Click="btn_month_down_Click" Height="16">
+			<Viewbox>
+				<Path Data="M32,0L32,8.4920026 21.291016,17.120999 21.200989,17.195005 21.247009,17.232999 15.978027,21.478999 10.708008,17.232999 0,8.6020032 0,0.11100769 12.151001,9.904997 15.93103,12.947995 16.020996,12.874997 19.846008,9.7920056z" 
                       Stretch="Uniform" Fill="Black" Width="15" Height="15" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5"></Path>
-            </Viewbox>
-        </Button>
-        <TextBlock x:Name="txt_datenow" Text="2000년 1월 1일" FontSize="16" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="8.8,28,0,0" Grid.Column="1"/>
-        <TextBlock x:Name="txt_weather" Text="-3&#176; / -5&#176; 맑음" FontSize="14" Grid.Column="1"  VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,55,0,0"/>
-        <local:DetailControl x:Name="detail" Grid.Column="1" Margin="10,91,10.4,10.4" Modified="DetailControl_Modified"/>
+			</Viewbox>
+		</Button>
+		<TextBlock x:Name="txt_datenow" Text="2000년 1월 1일" FontSize="16" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="8.8,28,0,0" Grid.Column="1"/>
+		<TextBlock x:Name="txt_weather" Text="-3&#176; / -5&#176; 맑음" FontSize="14" Grid.Column="1"  VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,55,0,0"/>
+		<local:DetailControl x:Name="detail" Grid.Column="1" Margin="10,91,10.4,10.4" Modified="DetailControl_Modified"/>
+		<Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="136,324,0,0" VerticalAlignment="Top" Width="100" Grid.Column="1" MouseEnter="Load_Weather"/>
 
-    </Grid>
+	</Grid>
 </Window>

@@ -147,5 +147,11 @@ namespace Wealendar
             
             schedule.Save(); // 고칠때마다 저장
         }
+
+
+        private void Load_Weather(object sender, MouseEventArgs e)
+        {
+            weather.LoadWeather();
+        }
     }
 }
