@@ -11,6 +11,7 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Foreground" Value="#FF4E4E4E"/>
         </Style>
         <Style TargetType="{x:Type local:CalendarControlItem}">
             <Setter Property="FontSize" Value="16"/>
