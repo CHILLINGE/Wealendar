@@ -29,24 +29,36 @@ namespace Wealendar
         public WeatherManager()
         {
             webclient = new WebManager();
-            int date = 20190128;
-            int time = 1800;
-            int nx = 59;
-            int ny = 126;
-            Dictionary<string, string> data = new Dictionary<string, string>();
-            data["ServiceKey"] = "yW0fFl3x75%2Fc%2FC1jrkPKbqvt49hJS%2FHnk97M2euq1U3cpz%2FB6PyGwLPndqhOVFspMOXaI%2Fnsv0fQZCTQL2xyXw%3D%3D";
-            data["base_date"]= date.ToString();
-            data["base_time"] = time.ToString();
-            data["nx"] = nx.ToString();
-            data["ny"] = ny.ToString();
-
-            path = webclient.GetContent("http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/getForecastTimeData", data);
+            
             
 
         }
 
-        public void LoadWeather()
+        public Weather GetWeather(DateTime time, Point position)
         {
+            string basedate = time.ToString("yyMMdd"); // 인자로 받은 날을 
+            string basetime = "1800";
+            //int nx = 59;
+            //int ny = 126;
+            Dictionary<string, string> data = new Dictionary<string, string>();
+            data["ServiceKey"] = "yW0fFl3x75%2Fc%2FC1jrkPKbqvt49hJS%2FHnk97M2euq1U3cpz%2FB6PyGwLPndqhOVFspMOXaI%2Fnsv0fQZCTQL2xyXw%3D%3D";
+            data["base_date"] = basedate;
+            data["base_time"] = basetime;
+            data["nx"] = position.X.ToString();
+            data["ny"] = position.Y.ToString();
+
+            path = webclient.GetContent("http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2", data);
+
+
+            Weather weather = new Weather();
+
+            // 여기에 xml 해석해서 Weather 클래스에 채워넣기
+
+            return weather;
+
+
+
+            /*
             XmlDocument docx = new XmlDocument();
             Dictionary<string, string> Result = new Dictionary<string, string>();
             try
@@ -54,7 +66,7 @@ namespace Wealendar
                 docx.Load(path);
                 XmlNodeList xmlNodeList = docx.SelectNodes("weather");
 
-                foreach(XmlNode xml in xmlNodeList)
+                foreach (XmlNode xml in xmlNodeList)
                 {
                     string date = xml["base_date"].InnerText.ToString();
                     string time = xml["base_time"].InnerText.ToString();
@@ -69,6 +81,13 @@ namespace Wealendar
             {
                 MessageBox.Show("XML 문제 발생\n" + ex);
             }
+            */
+
+        }
+
+        public void LoadWeather()
+        {
+            
 
 
 
