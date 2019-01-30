@@ -34,7 +34,7 @@ namespace Wealendar
 
         }
 
-        public Weather GetWeather(DateTime time, Point position)
+        string getAPIString(DateTime time, Point position)
         {
             string basedate = time.ToString("yyMMdd"); // 인자로 받은 날을 
             string basetime = "1800";
@@ -48,6 +48,13 @@ namespace Wealendar
             data["ny"] = position.Y.ToString();
 
             path = webclient.GetContent("http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2", data);
+
+            return path;
+        }
+
+        public Weather GetWeather(DateTime time, Point position)
+        {
+            string output = getAPIString(time, position);
 
 
             Weather weather = new Weather();
