@@ -65,7 +65,7 @@ namespace Wealendar
 
 
 
-            /*
+            
             XmlDocument docx = new XmlDocument();
             Dictionary<string, string> Result = new Dictionary<string, string>();
             try
@@ -75,12 +75,14 @@ namespace Wealendar
 
                 foreach (XmlNode xml in xmlNodeList)
                 {
-                    string date = xml["base_date"].InnerText.ToString();
-                    string time = xml["base_time"].InnerText.ToString();
-                    string weather = xml["fcstValue"].InnerText.ToString();
+                    string Date = xml["baseDate"].InnerText.ToString();
+                    string Time = xml["baseTime"].InnerText.ToString();
+                    string Weather = xml["fcstValue"].InnerText.ToString();
 
+                    /*
                     Result[date] = time;
                     Result[time] = weather;
+                    */
                 }
             }
 
@@ -88,7 +90,7 @@ namespace Wealendar
             {
                 MessageBox.Show("XML 문제 발생\n" + ex);
             }
-            */
+            
 
         }
 
