@@ -20,7 +20,7 @@ namespace Wealendar
     /// </summary>
     public partial class CalendarControl : UserControl
     {
-        private CalendarControlItem[,] buttons;
+        private CalendarControlItemUpg[,] buttons;
 
         public event EventHandler<CalendarEventArgs> SelectionChanged;
 
@@ -75,34 +75,55 @@ namespace Wealendar
         {
             InitializeComponent();
 
-            buttons = new CalendarControlItem[6,7];
+            //buttons = new CalendarControlItem[6,7];
+            buttons = new CalendarControlItemUpg[6, 7];
 
             for (int i = 0; i < 6; i++)
             {
                 for (int j = 0; j < 7; j++)
                 {
-                    
-                    
-                    CalendarControlItem btn = new CalendarControlItem();
+
+
+                    //CalendarControlItem btn = new CalendarControlItem();
+
+
+
+                    //Grid.SetRow(btn, i + 1);
+                    //Grid.SetColumn(btn, j);
+
+
+
+                    //btn.Click += (sender, e) =>
+                    //{
+                    //    CalendarControlItem ctl = sender as CalendarControlItem;
+
+                    //    SelectedDate = ctl.TargetDate;
+                    //    SelectionChanged?.Invoke(this, new CalendarEventArgs(ctl.TargetDate));
+                    //};
+
+                    //maingrid.Children.Add(btn);
+
+                    //buttons[i,j] = btn;
+
+                    CalendarControlItemUpg btn = new CalendarControlItemUpg();
+                    btn.InnerBorderBrush = Brushes.Black;
+                    btn.Margin = new Thickness(5);
 
                     Grid.SetRow(btn, i + 1);
                     Grid.SetColumn(btn, j);
 
-
-
                     btn.Click += (sender, e) =>
                     {
-                        CalendarControlItem ctl = sender as CalendarControlItem;
+                        CalendarControlItemUpg ctl = sender as CalendarControlItemUpg;
 
                         SelectedDate = ctl.TargetDate;
                         SelectionChanged?.Invoke(this, new CalendarEventArgs(ctl.TargetDate));
                     };
 
                     maingrid.Children.Add(btn);
-                    
+
                     buttons[i,j] = btn;
-                    
-                    
+
                 }
             }
 

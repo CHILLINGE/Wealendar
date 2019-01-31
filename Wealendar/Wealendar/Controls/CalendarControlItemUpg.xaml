@@ -1,12 +1,61 @@
-﻿<UserControl x:Class="Wealendar.Controls.CalendarControlItemUpg"
+﻿<UserControl x:Class="Wealendar.CalendarControlItemUpg"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Wealendar.Controls"
+             xmlns:local="clr-namespace:Wealendar"
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="50">
+    <UserControl.Resources>
+
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#FFCCCCCC"/>
+
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+
+                        <Border CornerRadius="90" BorderThickness="1">
+                            <Grid x:Name="Btng" Background="{TemplateBinding Background}">
+                                <Border Visibility="Hidden" x:Name="BHover" CornerRadius="90" Focusable="False" BorderThickness="0" BorderBrush="{TemplateBinding BorderBrush}" Background="#4CB13F3F"/>
+                                <Border x:Name="BClick" Focusable="False" CornerRadius="90" Background="Transparent"/>
+                                <ContentControl x:Name="Btnz" Foreground="{TemplateBinding Foreground}" TextBlock.TextAlignment="Center" Content="{TemplateBinding Content}"  TextBlock.FontSize="16" VerticalAlignment="Center" Margin="3,0,3,0"/>
+
+                            </Grid>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True"/>
+                            <Trigger Property="IsDefaulted" Value="True"/>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="BHover" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" TargetName="BClick" Value="#7FA7A7A7"/>
+                                <Setter Property="Foreground" TargetName="Btnz" Value="White"/>
+                                <Setter Property="Visibility" TargetName="BHover" Value="Hidden"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Btng" Property="Background" Value="#FF828282"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        
+    </UserControl.Resources>
     <Grid>
-            
+        <Button x:Name="mainborder" Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=local:CalendarControlItemUpg}, Path=InnerBackground}"
+                BorderBrush="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=local:CalendarControlItemUpg}, Path=InnerBorderBrush}"
+                BorderThickness="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=local:CalendarControlItemUpg}, Path=InnerBorderThickness}" Click="mainborder_Click"
+                >
+            <Grid>
+                <TextBlock x:Name="innertextblock" Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=local:CalendarControlItemUpg}, Path=InnerText}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Grid>
+        </Button>
+        
     </Grid>
 </UserControl>
