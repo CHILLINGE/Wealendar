@@ -56,12 +56,14 @@ namespace Wealendar
 
                 foreach(XmlNode xml in xmlNodeList)
                 {
-                    string date = xml["base_date"].InnerText.ToString();
-                    string time = xml["base_time"].InnerText.ToString();
+                    string date = xml["baseDate"].InnerText.ToString();
+                    string time = xml["baseTime"].InnerText.ToString();
                     string weather = xml["fcstValue"].InnerText.ToString();
+
 
                     Result[date] = time;
                     Result[time] = weather;
+                    
                 }
             }
 
@@ -69,9 +71,6 @@ namespace Wealendar
             {
                 MessageBox.Show("XML 문제 발생\n" + ex);
             }
-
-
-
         }
 
 
