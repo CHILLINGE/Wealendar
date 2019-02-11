@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Xml;
 using System.Xml.Linq;
+using System.Web;
 
 namespace Wealendar
 {
@@ -34,7 +35,7 @@ namespace Wealendar
 
         }
 
-        string getAPIString(DateTime time, Point position)
+        public string getAPIString(DateTime time, Point position)
         {
             string basedate = time.ToString("yyMMdd"); // 인자로 받은 날을 
             string basetime = "1800";
