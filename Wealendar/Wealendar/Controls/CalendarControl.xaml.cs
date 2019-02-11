@@ -107,6 +107,8 @@ namespace Wealendar
 
                     CalendarControlItemUpg btn = new CalendarControlItemUpg();
                     btn.InnerBorderBrush = Brushes.Black;
+                    btn.SelectedBackgroundBrush = Brushes.Black;
+
                     btn.Margin = new Thickness(5);
 
                     Grid.SetRow(btn, i + 1);
@@ -115,7 +117,7 @@ namespace Wealendar
                     btn.Click += (sender, e) =>
                     {
                         CalendarControlItemUpg ctl = sender as CalendarControlItemUpg;
-
+                        ctl.IsSelected = true;
                         SelectedDate = ctl.TargetDate;
                         SelectionChanged?.Invoke(this, new CalendarEventArgs(ctl.TargetDate));
                     };

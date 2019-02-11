@@ -47,6 +47,8 @@
 
         
     </UserControl.Resources>
+
+    
     <Grid>
         <Button x:Name="mainborder" Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=local:CalendarControlItemUpg}, Path=InnerBackground}"
                 BorderBrush="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=local:CalendarControlItemUpg}, Path=InnerBorderBrush}"
@@ -55,6 +57,7 @@
             <Grid>
                 <TextBlock x:Name="innertextblock" Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=local:CalendarControlItemUpg}, Path=InnerText}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </Grid>
+            
         </Button>
         
     </Grid>

@@ -26,7 +26,7 @@ namespace Wealendar
         public CalendarControlItemUpg()
         {
             InitializeComponent();
-            
+            DataContext = this;
         }
 
         private DateTime targetdate;
@@ -72,6 +72,56 @@ namespace Wealendar
         }
         public static readonly DependencyProperty InnerTextProperty =
             DependencyProperty.Register("InnerText", typeof(string), typeof(CalendarControlItemUpg), new PropertyMetadata("0"));
+
+
+
+
+
+
+        public Brush SelectedBackgroundBrush
+        {
+            get { return (Brush)GetValue(SelectedBackgroundBrushProperty); }
+            set { SetValue(SelectedBackgroundBrushProperty, value); }
+        }
+        public static readonly DependencyProperty SelectedBackgroundBrushProperty =
+            DependencyProperty.Register("SelectedBackgroundBrush", typeof(Brush), typeof(CalendarControlItemUpg), new PropertyMetadata(Brushes.Transparent));
+
+
+
+
+
+        public Brush SelectedBorderBrush
+        {
+            get { return (Brush)GetValue(SelectedBorderBrushProperty); }
+            set { SetValue(SelectedBorderBrushProperty, value); }
+        }
+        public static readonly DependencyProperty SelectedBorderBrushProperty =
+            DependencyProperty.Register("SelectedBorderBrush", typeof(Brush), typeof(CalendarControlItemUpg), new PropertyMetadata(Brushes.Transparent));
+
+
+
+
+        public bool IsSelected
+        {
+            get { return (bool)GetValue(IsSelectedProperty); }
+            set { SetValue(IsSelectedProperty, value); }
+        }
+        public static readonly DependencyProperty IsSelectedProperty =
+            DependencyProperty.Register("IsSelected", typeof(bool), typeof(CalendarControlItemUpg), new PropertyMetadata(false, 
+                new PropertyChangedCallback((d,e) => {
+                    CalendarControlItemUpg control = d as CalendarControlItemUpg;
+                    if ((bool)e.NewValue == true)
+                    {
+                        control.mainborder.Background = control.SelectedBackgroundBrush;
+                    }
+                    else
+                    {
+                        control.mainborder.Background = control.InnerBackground;
+                    }
+                })));
+
+
+
 
         private void mainborder_Click(object sender, RoutedEventArgs e)
         {
