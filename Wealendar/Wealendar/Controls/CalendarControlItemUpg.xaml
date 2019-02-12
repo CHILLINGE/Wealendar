@@ -16,8 +16,8 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
 
-                        <Border CornerRadius="90" BorderThickness="1">
-                            <Grid x:Name="Btng" Background="{TemplateBinding Background}">
+                        <Border CornerRadius="90" BorderThickness="1"  Background="{TemplateBinding Background}">
+                            <Grid x:Name="Btng" >
                                 <Border Visibility="Hidden" x:Name="BHover" CornerRadius="90" Focusable="False" BorderThickness="0" BorderBrush="{TemplateBinding BorderBrush}" Background="#4CB13F3F"/>
                                 <Border x:Name="BClick" Focusable="False" CornerRadius="90" Background="Transparent"/>
                                 <ContentControl x:Name="Btnz" Foreground="{TemplateBinding Foreground}" TextBlock.TextAlignment="Center" Content="{TemplateBinding Content}"  TextBlock.FontSize="16" VerticalAlignment="Center" Margin="3,0,3,0"/>
