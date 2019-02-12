@@ -35,26 +35,30 @@ namespace Wealendar
 
         }
 
-        public string getAPIString(DateTime time, int position)
+        public string getAPIString(DateTime time, Point position)
         {
-             // 인자로 받은 날을 
-            string basedate = time.ToString("yyyyMMdd")+"0600";
+            string basedate = time.ToString("yyyyMMdd"); // 인자로 받은 날을 
+            string basetime = "0200";
+            //int nx = 59;
+            //int ny = 126;
             Dictionary<string, string> data = new Dictionary<string, string>();
             data["ServiceKey"] = "yW0fFl3x75%2Fc%2FC1jrkPKbqvt49hJS%2FHnk97M2euq1U3cpz%2FB6PyGwLPndqhOVFspMOXaI%2Fnsv0fQZCTQL2xyXw%3D%3D";
-            data["tmFc"] = basedate;
-            data["stnId"] = position.ToString();
-            //data["numOfRows"] = "10";
-            //data["pageNo"] = "2";
-            
+            data["base_date"] = basedate;
+            data["base_time"] = basetime;
+            data["numOfRows"] = "10";
+            data["pageNo"] = "2";
+            data["nx"] = position.X.ToString();
+            data["ny"] = position.Y.ToString();
 
-            path = webclient.GetContent("http://newsky2.kma.go.kr/service/MiddleFrcstInfoService/getMiddleForecast", data);
+            path = webclient.GetContent("http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastSpaceData", data);
 
             return path;
         }
 
-        public Weather GetWeather(DateTime time, int position)
+        public Weather GetWeather(DateTime time, Point position)
         {
             string output = getAPIString(time, position);
+
 
             Weather weather = new Weather();
 
@@ -62,6 +66,9 @@ namespace Wealendar
 
             return weather;
 
+
+
+            
             XmlDocument docx = new XmlDocument();
             Dictionary<string, string> Result = new Dictionary<string, string>();
             try
