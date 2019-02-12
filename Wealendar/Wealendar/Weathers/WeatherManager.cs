@@ -38,7 +38,7 @@ namespace Wealendar
         public string getAPIString(DateTime time, Point position)
         {
             string basedate = time.ToString("yyyyMMdd"); // 인자로 받은 날을 
-            string basetime = "1800";
+            string basetime = "0200";
             //int nx = 59;
             //int ny = 126;
             Dictionary<string, string> data = new Dictionary<string, string>();
