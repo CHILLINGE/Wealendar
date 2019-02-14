@@ -67,6 +67,7 @@
     <Compile Include="DetailWindow.xaml.cs">
       <DependentUpon>DetailWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Schedules\datapluscolor.cs" />
     <Compile Include="Schedules\IScheduleManager.cs" />
     <Compile Include="Schedules\ScheduleManager.cs" />
     <Compile Include="Weathers\CloudStatus.cs" />

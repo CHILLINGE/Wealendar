@@ -12,7 +12,8 @@ namespace Wealendar
 {
     public class ScheduleManager : IScheduleManager
     {
-        private Dictionary<string, string> Data { get; set; }
+        private Dictionary<string, datapluscolor> Data { get; set; }
+        private Dictionary<string, string> ScheduleColors { get; set; }
 
         /// <summary>
         /// 쓰고 읽을 파일의 경로를 지정하는 변수
@@ -24,12 +25,14 @@ namespace Wealendar
             filepath = path;
         }
 
+
         /// <summary>
         /// 스케쥴 정보 디스크에서 로딩
         /// </summary>
         public void Load()
         {
-            Data = new Dictionary<string, string>();
+            Data = new Dictionary<string, datapluscolor>();
+
 
             string url = filepath;
 
@@ -45,7 +48,9 @@ namespace Wealendar
                     {
                         string d = xn["date"].InnerText;
                         string c = xn["Content"].InnerText;
-                        Data[d] = c;
+                        string e = xn["Color"].InnerText;
+                        Data[d].Contentdata = c;
+                        Data[d].Colorcode = e;
                     }
                 }
                 catch (ArgumentException ex)
@@ -53,12 +58,9 @@ namespace Wealendar
                     MessageBox.Show("XML 문제 발생\n" + ex);
                 }
             }
-            
-
-            
-
-
+          
         }
+
 
         /// <summary>
         ///  전체 데이터를 파일에 저장
@@ -76,11 +78,18 @@ namespace Wealendar
             foreach (string k in list) {
                 XElement xe1 = new XElement("Day",
                     new XElement("date", k),
-                    new XElement("Content", Data[k])
+                    new XElement("Content", Data[k].Contentdata),
+                    new XElement("Color", Data[k].Colorcode)
                     );
                 xroot.Add(xe1);
                 xdoc.Save(url);
             }
+
+        }
+
+
+        public string GetColors()
+        {
 
         }
 
@@ -94,7 +103,7 @@ namespace Wealendar
             string Mydateschedule = target.ToString("yy-MM-dd");
 
             if (Data.ContainsKey(Mydateschedule)) //일정이 있는지 구분
-                return Data[Mydateschedule]; //그 날의 일정데이터
+                return Data[Mydateschedule].Contentdata; //그 날의 일정데이터
             else
                 return null; // 없으면 null 반환
         }
@@ -105,11 +114,13 @@ namespace Wealendar
         /// </summary>
         /// <param name="target">원하는 날짜</param>
         /// <param name="data">넣을 데이터</param>
-        public void SetData(DateTime target, string data)
+        /// <param name="color">컬러</param>
+        public void SetData(DateTime target, string data, string color)
         {
             string Mydateschedule = target.ToString("yy-MM-dd");
 
-            Data[Mydateschedule] = data;
+            Data[Mydateschedule].Contentdata = data;
+            Data[Mydateschedule].Colorcode = color;
         }
 
         /// <summary>

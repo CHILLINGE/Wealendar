@@ -35,6 +35,6 @@ namespace Wealendar
         /// </summary>
         /// <param name="target">원하는 날짜</param>
         /// <param name="data">넣을 데이터</param>
-        void SetData(DateTime target, string data);
+        void SetData(DateTime target, string data, string color);
     }
 }
