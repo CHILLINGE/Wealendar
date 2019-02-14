@@ -107,9 +107,9 @@ namespace Wealendar
 
                     CalendarControlItemUpg btn = new CalendarControlItemUpg();
                     btn.InnerBorderBrush = Brushes.Black;
-                    btn.SelectedBackgroundBrush = Brushes.Black;
+                    btn.SelectedBackgroundBrush = Brushes.LightGray;
 
-                    btn.Margin = new Thickness(5);
+                    // btn.Margin = new Thickness(5);
 
                     Grid.SetRow(btn, i + 1);
                     Grid.SetColumn(btn, j);
@@ -117,6 +117,7 @@ namespace Wealendar
                     btn.Click += (sender, e) =>
                     {
                         CalendarControlItemUpg ctl = sender as CalendarControlItemUpg;
+                        ResetButtons();
                         ctl.IsSelected = true;
                         SelectedDate = ctl.TargetDate;
                         SelectionChanged?.Invoke(this, new CalendarEventArgs(ctl.TargetDate));
@@ -156,14 +157,24 @@ namespace Wealendar
             for (int i = startday + days; i < buttons.Length; i++)
             {
                 buttons[i / 7, i % 7].TargetDate = new DateTime(year,month, 1).AddMonths(1).AddDays(cnt++);
+                buttons[i / 7, i % 7].Foreground = Brushes.Gray;
             }
 
             cnt = (int)new DateTime(year, month, 1).Subtract(new TimeSpan(startday, 0, 0, 0)).Day - 1;
             for (int i = 0; i < startday; i++)
             {
                 buttons[i / 7, i % 7].TargetDate = new DateTime(year, month, 1).AddMonths(-1).AddDays(cnt++);
+                buttons[i / 7, i % 7].Foreground = Brushes.Gray;
             }
 
+        }
+
+        private void ResetButtons()
+        {
+            foreach (var i in buttons)
+            {
+                i.IsSelected = false;
+            }
         }
 
         
