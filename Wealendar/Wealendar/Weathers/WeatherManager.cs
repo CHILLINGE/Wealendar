@@ -67,29 +67,32 @@ namespace Wealendar
             return path2;
         }
 
-        public Weather GetWeather(DateTime time, string position)
+        public WeatherList GetWeather(DateTime time, string position)
         {
             string output = getweatherString(time, position);
             string output2 = gettemString(time, position);
 
             string tmpoutput = "<?xml version=\"1.0\" encoding=\"UTF - 8\" standalone=\"yes\"?><response><header><resultCode>0000</resultCode><resultMsg>OK</resultMsg></header><body><items><item><regId>11B20201</regId><taMax10>7</taMax10><taMax3>2</taMax3><taMax4>2</taMax4><taMax5>4</taMax5><taMax6>5</taMax6><taMax7>5</taMax7><taMax8>6</taMax8><taMax9>7</taMax9><taMin10>2</taMin10><taMin3>-2</taMin3><taMin4>-4</taMin4><taMin5>-5</taMin5><taMin6>-2</taMin6><taMin7>-1</taMin7><taMin8>0</taMin8><taMin9>1</taMin9></item></items><numOfRows>10</numOfRows><pageNo>1</pageNo><totalCount>1</totalCount></body></response>";
 
-            Weather weather = new Weather();
+            WeatherList weatherlst = new WeatherList();
             
             XmlDocument xml = new XmlDocument();
             xml.LoadXml(tmpoutput); // suppose that myXmlString contains "<Names>...</Names>"
             Console.WriteLine(tmpoutput);
-            XmlNodeList xnList = xml.SelectNodes("/response/header");
-            //foreach (XmlNode xn in xnList)
-            //{
-            //    string firstName = xn["FirstName"].InnerText;
-            //    string lastName = xn["LastName"].InnerText;
-            //    Console.WriteLine("Name: {0} {1}", firstName, lastName);
-            //}
+            XmlNode xnList = xml.SelectSingleNode("response/body/items/item");
 
-            // 여기에 xml 해석해서 Weather 클래스에 채워넣기
+            for (int i = 3; i <= 10; i++)
+            {
+                Weather tmpWeather = new Weather();
+                tmpWeather.Time = time.AddDays(i);
+                tmpWeather.MaxTemperature =int.Parse( xnList["taMax" + i.ToString()].InnerText);//int.Parse 는 string을 int로 바꿔준다 
+                tmpWeather.MinTemperature = int.Parse(xnList["taMin" + i.ToString()].InnerText);
+                weatherlst.Add(tmpWeather);
 
-            return weather;
+
+            }
+
+            return weatherlst;
 
 
 
