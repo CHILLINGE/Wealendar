@@ -35,6 +35,7 @@ namespace Wealendar
             
             
 
+
         }
 
         public string getweatherString(DateTime time, string position)
