@@ -42,7 +42,7 @@ namespace Wealendar
             {
                 _currentMonth = value;
                 calendar.Month = _currentMonth; // 달력의 월을 실제로 변경
-                txt_month.Text = _currentMonth.ToString() + "월"; // 달력 위의 글자 변경
+                txt_month.Text = _currentMonth.ToString() + ""; // 달력 위의 글자 변경
             }
         }
 
@@ -60,7 +60,7 @@ namespace Wealendar
             {
                 _currentYear = value;
                 calendar.Year = _currentYear; // 달력의 년을 실제로 변경
-                txt_year.Text = _currentYear.ToString() + "월"; // 달력 위의 글자 변경
+                txt_year.Text = _currentYear.ToString() + ""; // 달력 위의 글자 변경
             }
         }
         
@@ -123,6 +123,7 @@ namespace Wealendar
                 CurrentYear--;
                 CurrentMonth = 12;
             }
+
                 
         }
         // 월 변경 버튼 클릭

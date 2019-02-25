@@ -13,7 +13,7 @@
         </Grid.RowDefinitions>
         <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
             <Grid>
-                <TextBlock x:Name="txt_show" Margin="2" Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=local:DetailControl}, Path=InnerText}"/>
+                <TextBlock x:Name="txt_show" Margin="2" Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=local:DetailControl}, Path=InnerText}" Foreground="White"/>
                 <TextBox x:Name="txt_edit" AcceptsReturn="True" Visibility="Hidden"/>
             </Grid>
             
