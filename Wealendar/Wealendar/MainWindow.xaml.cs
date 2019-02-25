@@ -143,7 +143,7 @@ namespace Wealendar
         // 수정 후 저장버튼 클릭
         private void DetailControl_Modified(object sender, DetailModifiedEventArgs e)
         {
-            schedule.SetData(calendar.SelectedDate, e.NewValue);
+            schedule.SetData(calendar.SelectedDate, e.NewValue, null);
             
             schedule.Save(); // 고칠때마다 저장
         }

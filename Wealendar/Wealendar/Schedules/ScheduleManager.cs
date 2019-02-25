@@ -13,8 +13,8 @@ namespace Wealendar
     public class ScheduleManager : IScheduleManager
     {
         private Dictionary<string, datapluscolor> Data { get; set; }
-        private Dictionary<string, string> ScheduleColors { get; set; }
-
+        //private Dictionary<string, string> ScheduleColors { get; set; }
+        
         /// <summary>
         /// 쓰고 읽을 파일의 경로를 지정하는 변수
         /// </summary>
@@ -48,9 +48,17 @@ namespace Wealendar
                     {
                         string d = xn["date"].InnerText;
                         string c = xn["Content"].InnerText;
-                        string e = xn["Color"].InnerText;
+                        Data[d] = new datapluscolor();
                         Data[d].Contentdata = c;
-                        Data[d].Colorcode = e;
+
+                        if (xn["Color"] != null)
+                        {
+                            string e = xn["Color"].InnerText;
+                            Data[d].Colorcode = e;
+                        }
+                        
+                        
+                        
                     }
                 }
                 catch (ArgumentException ex)
@@ -88,9 +96,21 @@ namespace Wealendar
         }
 
 
-        public string GetColors()
+        public Dictionary<int, string> GetColors(int month)
         {
+            Dictionary<int,string> colors = new Dictionary<int,string>();
+            
+            foreach (var i in Data)
+            {
+                if (int.Parse(i.Key.Substring(3,2)) == month)
+                {
+                    int dd = int.Parse(i.Key.Substring(6, 2));
+                    string s = i.Value.Colorcode;
+                    colors[dd] = s;
+                }
+            }
 
+            return colors;
         }
 
         /// <summary>
@@ -118,6 +138,7 @@ namespace Wealendar
         public void SetData(DateTime target, string data, string color)
         {
             string Mydateschedule = target.ToString("yy-MM-dd");
+            Data[Mydateschedule] = new datapluscolor();
 
             Data[Mydateschedule].Contentdata = data;
             Data[Mydateschedule].Colorcode = color;
