@@ -72,13 +72,10 @@ namespace Wealendar
             string output = getweatherString(time, position);
             string output2 = gettemString(time, position);
 
-            string tmpoutput = "<?xml version=\"1.0\" encoding=\"UTF - 8\" standalone=\"yes\"?><response><header><resultCode>0000</resultCode><resultMsg>OK</resultMsg></header><body><items><item><regId>11B20201</regId><taMax10>7</taMax10><taMax3>2</taMax3><taMax4>2</taMax4><taMax5>4</taMax5><taMax6>5</taMax6><taMax7>5</taMax7><taMax8>6</taMax8><taMax9>7</taMax9><taMin10>2</taMin10><taMin3>-2</taMin3><taMin4>-4</taMin4><taMin5>-5</taMin5><taMin6>-2</taMin6><taMin7>-1</taMin7><taMin8>0</taMin8><taMin9>1</taMin9></item></items><numOfRows>10</numOfRows><pageNo>1</pageNo><totalCount>1</totalCount></body></response>";
-
             WeatherList weatherlst = new WeatherList();
             
             XmlDocument xml = new XmlDocument();
-            xml.LoadXml(tmpoutput); // suppose that myXmlString contains "<Names>...</Names>"
-            Console.WriteLine(tmpoutput);
+            xml.LoadXml(output2); // suppose that myXmlString contains "<Names>...</Names>"
             XmlNode xnList = xml.SelectSingleNode("response/body/items/item");
 
             for (int i = 3; i <= 10; i++)
@@ -88,7 +85,6 @@ namespace Wealendar
                 tmpWeather.MaxTemperature =int.Parse( xnList["taMax" + i.ToString()].InnerText);//int.Parse 는 string을 int로 바꿔준다 
                 tmpWeather.MinTemperature = int.Parse(xnList["taMin" + i.ToString()].InnerText);
                 weatherlst.Add(tmpWeather);
-
 
             }
 
