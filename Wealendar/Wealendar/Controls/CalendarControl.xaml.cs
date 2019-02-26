@@ -56,11 +56,14 @@ namespace Wealendar
             foreach (var i in buttons)
             {
                 i.InnerBadgeForeground = Brushes.Transparent;
-
-                if (dict.ContainsKey(i.TargetDate.Day))
+                if (i.TargetDate.Month ==  Month)
                 {
-                    i.SetBadgeColor(dict[i.TargetDate.Day]);
+                    if (dict.ContainsKey(i.TargetDate.Day))
+                    {
+                        i.SetBadgeColor(dict[i.TargetDate.Day]);
+                    }
                 }
+                
             }
 
             
