@@ -154,5 +154,10 @@ namespace Wealendar
         {
             weather.LoadWeather();
         }
+
+        private void Calendar_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
