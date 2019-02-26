@@ -26,7 +26,7 @@ namespace Wealendar
         /// </summary>
         public DateTime Time { get; set; }
 
-        public CloudStatus Cloud { get; set; }
+        public string Cloud { get; set; }
 
         public int MaxTemperature { get; set; }
 

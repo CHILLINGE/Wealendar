@@ -70,8 +70,10 @@ namespace Wealendar
 
         public WeatherList GetWeather(DateTime time, string position)
         {
-            string output = getweatherString(time, position);
-            string output2 = gettemString(time, position);
+
+
+            string output = getweatherString(time, getweatherLocation(position));
+            string output2 = gettemString(time, gettemLocation(position));
 
             WeatherList weatherlst = new WeatherList();
             
@@ -79,47 +81,62 @@ namespace Wealendar
             xml.LoadXml(output2); // suppose that myXmlString contains "<Names>...</Names>"
             XmlNode xnList = xml.SelectSingleNode("response/body/items/item");
 
+            XmlDocument xml2 = new XmlDocument();
+            xml2.LoadXml(output); // hi2yeoni는 여기에 xml.LoadXml 이라 써서 안됐었다
+            XmlNode xn2List = xml2.SelectSingleNode("response/body/items/item");  // hi2yeoni는 여기에 itmes 라 써서 안됐었다
+
             for (int i = 3; i <= 10; i++)
             {
                 Weather tmpWeather = new Weather();
+
+
                 tmpWeather.Time = time.AddDays(i);
+
+
                 tmpWeather.MaxTemperature =int.Parse( xnList["taMax" + i.ToString()].InnerText);//int.Parse 는 string을 int로 바꿔준다 
                 tmpWeather.MinTemperature = int.Parse(xnList["taMin" + i.ToString()].InnerText);
+
+                tmpWeather.Cloud = xn2List["wf" + i.ToString() + (i <= 7 ? "Pm" : "")].InnerText;
+
+       
                 weatherlst.Add(tmpWeather);
 
             }
 
             return weatherlst;
 
+        }
 
 
-            
-            //XmlDocument docx = new XmlDocument();
-            //Dictionary<string, string> Result = new Dictionary<string, string>();
-            //try
-            //{
-            //    docx.Load(path);
-            //    XmlNodeList xmlNodeList = docx.SelectNodes("weather");
+        private string gettemLocation(string location)
+        {
+            switch (location)
+            {
+                case "서울":
+                    return "11B10101";
 
-            //    foreach (XmlNode xml in xmlNodeList)
-            //    {
-            //        string Date = xml["baseDate"].InnerText.ToString();
-            //        string Time = xml["baseTime"].InnerText.ToString();
-            //        string Weather = xml["fcstValue"].InnerText.ToString();
+                case "인천":
+                    return "11B20201";
 
-            //        /*
-            //        Result[date] = time;
-            //        Result[time] = weather;
-            //        */
-            //    }
-            //}
+                case "경기":
+                    return "11B20601";
 
-            //catch (ArgumentException ex)
-            //{
-            //    MessageBox.Show("XML 문제 발생\n" + ex);
-            //}
-            
+                default:
+                    return "";
+            }
+        }
 
+        private string getweatherLocation(string location)
+        {
+            switch (location)
+            {
+                case "서울":
+                case "인천":
+                case "경기":
+                    return "11B00000";
+                default:
+                    return "";
+            }
         }
 
         public void LoadWeather()
