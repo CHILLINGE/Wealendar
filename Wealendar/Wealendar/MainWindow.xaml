@@ -32,7 +32,7 @@
             <TextBlock x:Name="txt_month" HorizontalAlignment="Center" Margin="5,42,4.8,0" Text="0" VerticalAlignment="Top" FontSize="40" Foreground="#FFE4E4E4" RenderTransformOrigin="1.544,-2.689"/>
         </Grid>
 
-        <Button x:Name="btn_month_up" HorizontalAlignment="left" Margin="167,57,0,0" VerticalAlignment="Top"  Click="btn_month_up_Click" Height="32" Width="33" Background="#FF01286B" BorderBrush="#FF01286B">
+        <Button x:Name="btn_month_up" HorizontalAlignment="left" Margin="167,57,0,0" VerticalAlignment="Top"  Click="btn_month_up_Click" Height="32" Width="33" Background="{x:Null}" BorderBrush="{x:Null}">
             <Viewbox RenderTransformOrigin="0.5,0.519" Width="20">
                 <Viewbox.RenderTransform>
                     <TransformGroup>
@@ -46,7 +46,7 @@
                       Stretch="Uniform" Fill="Lavender" Width="15" Height="15" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5"></Path>
             </Viewbox>
         </Button>
-        <Button x:Name="btn_month_down" HorizontalAlignment="Right" Margin="0,57,173,0" VerticalAlignment="Top" Width="33" Click="btn_month_down_Click" Height="32" Background="#FF01286B" BorderBrush="#FF01286B">
+        <Button x:Name="btn_month_down" HorizontalAlignment="Right" Margin="0,57,173,0" VerticalAlignment="Top" Width="33" Click="btn_month_down_Click" Height="32" Background="{x:Null}" BorderBrush="{x:Null}">
             <Viewbox Height="22">
                 <Path Data="M32,0L32,8.4920026 21.291016,17.120999 21.200989,17.195005 21.247009,17.232999 15.978027,21.478999 10.708008,17.232999 0,8.6020032 0,0.11100769 12.151001,9.904997 15.93103,12.947995 16.020996,12.874997 19.846008,9.7920056z" 
                       Stretch="Uniform" Fill="Lavender" Width="13.527" Height="15" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
