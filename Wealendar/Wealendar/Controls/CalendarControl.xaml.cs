@@ -151,6 +151,7 @@ namespace Wealendar
             {
                 
                 buttons[i / 7, i % 7].TargetDate = new DateTime(year, month, cnt++);
+                buttons[i / 7, i % 7].Foreground = Brushes.Black;
             }
 
             cnt = 0;
