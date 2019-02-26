@@ -1,20 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
-using System.ServiceModel.Syndication;
-using System.IO;
 
 namespace Wealendar
 {
@@ -25,8 +11,9 @@ namespace Wealendar
     {
         WeatherManager weather;
         ScheduleManager schedule;
+        WeatherList weatherlist;
 
-
+      
 
         int _currentMonth;
         /// <summary>
@@ -90,11 +77,12 @@ namespace Wealendar
         {
             
             schedule.Load(); // 스케쥴 정보 로드
-            
 
 
-            weather.LoadWeather();
 
+
+            if (DateTime.Now.Hour>=6) weatherlist = weather.GetWeather(DateTime.Now,"서울"); // 현재 날짜에서 3일전 제공된 api 정보
+            else weatherlist = weather.GetWeather(DateTime.Now.AddDays(-1), "서울");
 
 
             calendar.SelectedDate = DateTime.Now;
@@ -115,6 +103,17 @@ namespace Wealendar
             txt_datenow.Text = calendar.SelectedDate.ToLongDateString(); // 현재 날짜 텍스트 변경
             detail.IsEditMode = false; // 수정중이었으면 취소
             detail.InnerText = schedule.GetData(calendar.SelectedDate); // 불러온 날짜의 데이터 표시하기
+
+            bool flag = false;
+            for (int i = 0; i < weatherlist.Count; i++)
+            {
+                if (weatherlist[i].Time.Date == calendar.SelectedDate.Date)
+                {
+                    flag = true;
+                    txt_weather.Text = string.Format("최고 {0}˚ / 최저 {1}˚ {2}", weatherlist[i].MaxTemperature, weatherlist[i].MinTemperature, weatherlist[i].Cloud);
+                }
+            }
+            if (!flag) txt_weather.Text = "";
         }
 
 
@@ -171,6 +170,11 @@ namespace Wealendar
         private void Load_Weather(object sender, MouseEventArgs e)
         {
             weather.LoadWeather();
+        }
+
+        private void Calendar_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

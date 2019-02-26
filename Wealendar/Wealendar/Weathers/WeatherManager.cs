@@ -97,7 +97,7 @@ namespace Wealendar
                 tmpWeather.MinTemperature = int.Parse(xnList["taMin" + i.ToString()].InnerText);
 
                 tmpWeather.Cloud = xn2List["wf" + i.ToString() + (i <= 7 ? "Pm" : "")].InnerText;
-
+                
        
                 weatherlst.Add(tmpWeather);
 
