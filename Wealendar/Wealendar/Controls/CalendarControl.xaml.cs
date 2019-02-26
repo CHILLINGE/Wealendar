@@ -51,7 +51,20 @@ namespace Wealendar
             ctl.ChangePage(ctl.Year, ctl.Month);
         }
 
+        public void SetMonthColors(Dictionary<int, string> dict)
+        {
+            foreach (var i in buttons)
+            {
+                i.InnerBadgeForeground = Brushes.Transparent;
 
+                if (dict.ContainsKey(i.TargetDate.Day))
+                {
+                    i.SetBadgeColor(dict[i.TargetDate.Day]);
+                }
+            }
+
+            
+        }
 
 
         public DateTime SelectedDate
@@ -68,6 +81,8 @@ namespace Wealendar
             
         }
 
+
+        
 
 
 
@@ -132,7 +147,7 @@ namespace Wealendar
 
 
             SelectedDate = DateTime.Now;
-            
+            ChangePage(DateTime.Now.Year, DateTime.Now.Month);
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)

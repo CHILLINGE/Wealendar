@@ -56,6 +56,8 @@
                 VerticalAlignment="Center" HorizontalAlignment="Center" Width="40" Height="40" >
             <Grid>
                 <TextBlock x:Name="innertextblock" Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=local:CalendarControlItemUpg}, Path=InnerText}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <Border HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,25,0,0" Width="4" Height="4" CornerRadius="90"
+                    Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=local:CalendarControlItemUpg}, Path=InnerBadgeForeground}"/>
             </Grid>
             
         </Button>

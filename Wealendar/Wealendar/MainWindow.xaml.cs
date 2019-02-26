@@ -43,6 +43,11 @@ namespace Wealendar
                 _currentMonth = value;
                 calendar.Month = _currentMonth; // 달력의 월을 실제로 변경
                 txt_month.Text = _currentMonth.ToString() + ""; // 달력 위의 글자 변경
+                
+                if (IsLoaded)
+                {
+                    calendar.SetMonthColors(schedule.GetColors(value));
+                }
             }
         }
 
@@ -86,7 +91,7 @@ namespace Wealendar
             
             schedule.Load(); // 스케쥴 정보 로드
             
-            
+
 
             weather.LoadWeather();
 
@@ -94,6 +99,8 @@ namespace Wealendar
 
             calendar.SelectedDate = DateTime.Now;
             UpdateDetails();
+
+            calendar.SetMonthColors(schedule.GetColors(DateTime.Now.Month));
         }
 
         // 달력의 날짜를 누를 때 이벤트
@@ -144,9 +151,20 @@ namespace Wealendar
         // 수정 후 저장버튼 클릭
         private void DetailControl_Modified(object sender, DetailModifiedEventArgs e)
         {
-            schedule.SetData(calendar.SelectedDate, e.NewValue, null);
+            if (string.IsNullOrWhiteSpace(e.NewValue))
+            {
+                schedule.SetData(calendar.SelectedDate, e.NewValue, "");
+                
+            } 
+            else
+            {
+
+                schedule.SetData(calendar.SelectedDate, e.NewValue, "yellow");
+            }
             
             schedule.Save(); // 고칠때마다 저장
+
+            calendar.SetMonthColors(schedule.GetColors(calendar.SelectedDate.Month));
         }
 
 

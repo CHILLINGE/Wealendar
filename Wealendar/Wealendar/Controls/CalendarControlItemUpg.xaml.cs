@@ -122,6 +122,37 @@ namespace Wealendar
 
 
 
+        public Brush InnerBadgeForeground
+        {
+            get { return (Brush)GetValue(InnerBadgeForegroundProperty); }
+            set { SetValue(InnerBadgeForegroundProperty, value); }
+        }
+        public static readonly DependencyProperty InnerBadgeForegroundProperty =
+            DependencyProperty.Register("InnerBadgeForeground", typeof(Brush), typeof(CalendarControlItemUpg), new PropertyMetadata(Brushes.Transparent));
+
+        public void SetBadgeColor(string colorcode)
+        {
+            if (string.IsNullOrWhiteSpace(colorcode))
+                return;
+            try
+            {
+                var brush = new BrushConverter().ConvertFromString(colorcode);
+                if (brush is Brush)
+                {
+                    InnerBadgeForeground = brush as Brush;
+                }
+                else
+                {
+                    InnerBadgeForeground = Brushes.Transparent;
+                }
+            }
+            catch
+            {
+                InnerBadgeForeground = Brushes.Transparent;
+            }
+            
+        }
+
 
         private void mainborder_Click(object sender, RoutedEventArgs e)
         {
