@@ -15,7 +15,7 @@
         </Style>
         <Style TargetType="{x:Type local:CalendarControlItem}">
             <Setter Property="FontSize" Value="16"/>
-            
+
         </Style>
     </UserControl.Resources>
     <Grid x:Name="maingrid">
@@ -29,7 +29,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="35"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -37,13 +37,13 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="일" Style="{StaticResource dayofweek}" Grid.Column="0" Grid.Row="0"/>
-        <TextBlock Text="월" Style="{StaticResource dayofweek}" Grid.Column="1" Grid.Row="0"/>
-        <TextBlock Text="화" Style="{StaticResource dayofweek}" Grid.Column="2" Grid.Row="0"/>
-        <TextBlock Text="수" Style="{StaticResource dayofweek}" Grid.Column="3" Grid.Row="0"/>
-        <TextBlock Text="목" Style="{StaticResource dayofweek}" Grid.Column="4" Grid.Row="0"/>
-        <TextBlock Text="금" Style="{StaticResource dayofweek}" Grid.Column="5" Grid.Row="0"/>
-        <TextBlock Text="토" Style="{StaticResource dayofweek}" Grid.Column="6" Grid.Row="0"/>
-        
+        <TextBlock Text="SUN" Style="{StaticResource dayofweek}" Grid.Column="0" Grid.Row="0" FontWeight="Bold" Foreground="#FFA09F9F" FontSize="12" FontFamily="Yu Gothic UI"/>
+        <TextBlock Text="MON" Style="{StaticResource dayofweek}" Grid.Column="1" Grid.Row="0" FontWeight="Bold" Foreground="#FFA09F9F" FontSize="12" FontFamily="Yu Gothic UI"/>
+        <TextBlock Text="TUE" Style="{StaticResource dayofweek}" Grid.Column="2" Grid.Row="0" FontWeight="Bold" Foreground="#FFA09F9F" FontSize="12" FontFamily="Yu Gothic UI"/>
+        <TextBlock Text="WED" Style="{StaticResource dayofweek}" Grid.Column="3" Grid.Row="0" FontWeight="Bold" Foreground="#FFA09F9F" FontSize="12" FontFamily="Yu Gothic UI"/>
+        <TextBlock Text="THU" Style="{StaticResource dayofweek}" Grid.Column="4" Grid.Row="0" FontWeight="Bold" Foreground="#FFA09F9F" FontSize="12" FontFamily="Yu Gothic UI"/>
+        <TextBlock Text="FRI" Style="{StaticResource dayofweek}" Grid.Column="5" Grid.Row="0" FontWeight="Bold" Foreground="#FFA09F9F" FontSize="12" FontFamily="Yu Gothic UI"/>
+        <TextBlock Text="SAT" Style="{StaticResource dayofweek}" Grid.Column="6" Grid.Row="0" FontWeight="Bold" Foreground="#FFA09F9F" FontSize="12" FontFamily="Yu Gothic UI"/>
+
     </Grid>
 </UserControl>

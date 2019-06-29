@@ -17,22 +17,21 @@
                     <TranslateTransform/>
                 </TransformGroup>
             </LinearGradientBrush.RelativeTransform>
-            <GradientStop Color="#FF055689" Offset="1"/>
-            <GradientStop Color="#FF01286B"/>
+
         </LinearGradientBrush>
     </Window.Background>
-    <Grid>
+    <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="246.4"/>
         </Grid.ColumnDefinitions>
-        <local:CalendarControl x:Name="calendar" Margin="10,118,18,10.4" SelectionChanged="CalendarControl_SelectionChanged" Background="#33EEEEEE" Loaded="Calendar_Loaded"/>
+        <local:CalendarControl x:Name="calendar" Margin="11,107,17,21.4" SelectionChanged="CalendarControl_SelectionChanged" Background="#33F0EEEE" Loaded="Calendar_Loaded" BorderBrush="#FFCDCBCB" />
         <Grid HorizontalAlignment="Center" Margin="10,0,18,110" >
-            <TextBlock x:Name="txt_year" HorizontalAlignment="Center" Margin="0,21,-0.2,0" Text="2000" VerticalAlignment="Top" Foreground="#4CFFFFFF" FontSize="15" RenderTransformOrigin="3.064,0.339"/>
-            <TextBlock x:Name="txt_month" HorizontalAlignment="Center" Margin="5,42,4.8,0" Text="0" VerticalAlignment="Top" FontSize="40" Foreground="#FFE4E4E4" RenderTransformOrigin="1.544,-2.689"/>
+            <TextBlock x:Name="txt_year" HorizontalAlignment="Right" Margin="0,13,-0.2,0" Text="2000" VerticalAlignment="Top" Foreground="#FFB4B3B3" FontSize="15" RenderTransformOrigin="3.064,0.339" FontWeight="Bold" FontFamily="Yu Gothic UI"/>
+            <TextBlock x:Name="txt_month" HorizontalAlignment="Left" Margin="5,34,0,0" Text="0" VerticalAlignment="Top" FontSize="40" Foreground="#FFC7C4C4" RenderTransformOrigin="1.544,-2.689" FontWeight="Bold" FontFamily="Yu Gothic UI"/>
         </Grid>
 
-        <Button x:Name="btn_month_up" HorizontalAlignment="left" Margin="167,57,0,0" VerticalAlignment="Top"  Click="btn_month_up_Click" Height="32" Width="33" Background="{x:Null}" BorderBrush="{x:Null}">
+        <Button x:Name="btn_month_up" HorizontalAlignment="left" Margin="167,49,0,0" VerticalAlignment="Top"  Click="btn_month_up_Click" Height="32" Width="33" Background="{x:Null}" BorderBrush="{x:Null}">
             <Viewbox RenderTransformOrigin="0.5,0.519" Width="20">
                 <Viewbox.RenderTransform>
                     <TransformGroup>
@@ -43,13 +42,13 @@
                     </TransformGroup>
                 </Viewbox.RenderTransform>
                 <Path Data="M16.022003,0L21.291992,4.2460014 32,12.876004 32,21.368007 19.847992,11.574002 16.069,8.5310041 15.977997,8.6029951 12.153992,11.687009 0,21.478999 0,12.986997 10.709991,4.358001 10.799011,4.2839958 10.752991,4.2460014z" 
-                      Stretch="Uniform" Fill="Lavender" Width="15" Height="15" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5"></Path>
+                      Stretch="Uniform" Fill="#FFF6E7D4" Width="15" Height="15" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5"></Path>
             </Viewbox>
         </Button>
-        <Button x:Name="btn_month_down" HorizontalAlignment="Right" Margin="0,57,173,0" VerticalAlignment="Top" Width="33" Click="btn_month_down_Click" Height="32" Background="{x:Null}" BorderBrush="{x:Null}">
+        <Button x:Name="btn_month_down" HorizontalAlignment="Right" Margin="0,49,173,0" VerticalAlignment="Top" Width="33" Click="btn_month_down_Click" Height="32" Background="{x:Null}" BorderBrush="{x:Null}">
             <Viewbox Height="22">
                 <Path Data="M32,0L32,8.4920026 21.291016,17.120999 21.200989,17.195005 21.247009,17.232999 15.978027,21.478999 10.708008,17.232999 0,8.6020032 0,0.11100769 12.151001,9.904997 15.93103,12.947995 16.020996,12.874997 19.846008,9.7920056z" 
-                      Stretch="Uniform" Fill="Lavender" Width="13.527" Height="15" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                      Stretch="Uniform" Fill="#FFF6E7D4" Width="13.527" Height="15" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -61,9 +60,9 @@
                 </Path>
             </Viewbox>
         </Button>
-        <TextBlock x:Name="txt_datenow" Text="2000년 1월 1일" FontSize="16" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="8.8,28,0,0" Grid.Column="1" Foreground="White"/>
-        <TextBlock x:Name="txt_weather" Text="-3&#176; / -5&#176; 맑음" FontSize="14" Grid.Column="1"  VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,55,0,0" Foreground="White"/>
-        <local:DetailControl x:Name="detail" Grid.Column="1" Margin="10,91,10.4,10.4" Modified="DetailControl_Modified"/>
+        <TextBlock x:Name="txt_datenow" Text="2000년 1월 1일" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="8.8,28,0,0" Grid.Column="1" Foreground="#FFA09F9F"/>
+        <TextBlock x:Name="txt_weather" Grid.Column="1"  VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,55,0,0" Foreground="#FFA09F9F"><Run Text="-3° / -5° "/><Run Text="맑음"/></TextBlock>
+        <local:DetailControl x:Name="detail" Grid.Column="1" Margin="10,107,10.4,10.4" Modified="DetailControl_Modified" Loaded="Detail_Loaded" Foreground="{x:Null}" Background="#33E5E3E3"/>
 
 
     </Grid>
